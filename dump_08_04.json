@@ -1,0 +1,1160 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2025-04-07T06:38:55.083Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "1",
+        "object_repr": "Contributor object (1)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2025-04-07T06:42:59.306Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "1",
+        "object_repr": "Contributor object (1)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2025-04-07T09:46:11.170Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "12",
+        "object_repr": "projet creation",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Author\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2025-04-07T09:46:32.150Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "13",
+        "object_repr": "Contributor object (13)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2025-04-07T09:47:49.508Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "12",
+        "object_repr": "Contributor object (12)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2025-04-07T11:54:51.024Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "18",
+        "object_repr": "Contributor object (18)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2025-04-07T13:40:09.233Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "19",
+        "object_repr": "Contributor object (19)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2025-04-07T14:08:41.449Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "13",
+        "object_repr": "projet creation test 2",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2025-04-07T14:45:03.626Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "20",
+        "object_repr": "Contributor object (20)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2025-04-07T14:51:05.146Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "11",
+        "object_repr": "projet contributor",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Author\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2025-04-07T14:51:30.763Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "21",
+        "object_repr": "Contributor object (21)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2025-04-08T11:37:24.060Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "7",
+        "object_repr": "Issue object (7)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Author\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2025-04-08T11:38:41.348Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "6",
+        "object_repr": "Issue object (6)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2025-04-08T11:38:41.348Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "5",
+        "object_repr": "Issue object (5)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2025-04-08T11:49:59.402Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "4",
+        "object_repr": "Issue object (4)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Author\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2025-04-08T11:54:05.478Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Issue object (2)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Author\"]}}]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 4,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 4,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 4,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 4,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 5,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 5,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 5,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 5,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 6,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 6,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 6,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 6,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add issue",
+        "content_type": 7,
+        "codename": "add_issue"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change issue",
+        "content_type": 7,
+        "codename": "change_issue"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete issue",
+        "content_type": 7,
+        "codename": "delete_issue"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view issue",
+        "content_type": 7,
+        "codename": "view_issue"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add comment",
+        "content_type": 8,
+        "codename": "add_comment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change comment",
+        "content_type": 8,
+        "codename": "change_comment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete comment",
+        "content_type": 8,
+        "codename": "delete_comment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view comment",
+        "content_type": 8,
+        "codename": "view_comment"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add project",
+        "content_type": 9,
+        "codename": "add_project"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change project",
+        "content_type": 9,
+        "codename": "change_project"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete project",
+        "content_type": 9,
+        "codename": "delete_project"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view project",
+        "content_type": 9,
+        "codename": "view_project"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add contributor",
+        "content_type": 10,
+        "codename": "add_contributor"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change contributor",
+        "content_type": 10,
+        "codename": "change_contributor"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete contributor",
+        "content_type": 10,
+        "codename": "delete_contributor"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view contributor",
+        "content_type": 10,
+        "codename": "view_contributor"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "poyuyxpkkowyedpvbo37l5tb0zhpp8mm",
+    "fields": {
+        "session_data": ".eJxVjE0OwiAYRO_C2hABweLSvWcg3x9SNZCUdmW8u23She4m897MWyVY5pKWLlMaWV2UUYffDoGeUjfAD6j3pqnVeRpRb4reade3xvK67u7fQYFe1vWAmYjQMdtsTlEkB0bw4BCZgCNaHOwRg-R4hhgsOLtGMi5DJB-8-nwBQyY54Q:1u0NEv:96c-zrUuwuhFH2utoSZHEp3l4RZPYvlIrHLKm065wF0",
+        "expire_date": "2025-04-17T16:16:25.142Z"
+    }
+},
+{
+    "model": "authenticated.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$3qrYJC70sU4KeZ0n6vVM7h$yv127/lpiCZovD80bup6tadz5S/UW2KII9LIVgNFYLk=",
+        "last_login": "2025-04-03T16:16:25.138Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-04-03T16:15:54.486Z",
+        "birth_date": null,
+        "can_be_contacted": null,
+        "can_data_be_shared": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authenticated.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$c60H9sjZ9WIZk9ZmqMvEK4$I7tPtHF6GjIwOqFsGy7Ty8Arqf4YJ4mmIVF6jV9Yn2Q=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Mikael",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-04T07:05:15.437Z",
+        "birth_date": "1994-06-22",
+        "can_be_contacted": true,
+        "can_data_be_shared": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authenticated.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$CReXG2lApg0IoIF8fyOaHB$0r5S3puM8cQuvEdp0ORKD1t/67yE63eA1I4TnuP+nFM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Damien",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-04T16:29:22.238Z",
+        "birth_date": "1984-09-14",
+        "can_be_contacted": true,
+        "can_data_be_shared": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authenticated.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$hCqd1EQweqU2ZtmReNQ36K$MXgtGGmVgOa4ni/goNP5qPSxQKaN7JklnMuSY+oPVMM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Emilie",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-04T16:30:10.218Z",
+        "birth_date": "1997-07-24",
+        "can_be_contacted": true,
+        "can_data_be_shared": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authenticated.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$xDvbSnQJxtvCiee5W9uQz1$DeBAORUQmwZtwdfIg+t+mHP4xEtDLnsnruJJhgYTXtM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Charlotte",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-04T16:30:51.158Z",
+        "birth_date": "2004-02-07",
+        "can_be_contacted": true,
+        "can_data_be_shared": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authenticated.user",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$MyuzwTR4rNufApBDnhOlbL$OA4ZU7PhbFopnN15UAbBr8v/Qjorlk7V8CXRgxnufks=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Paul",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-04T17:09:35.305Z",
+        "birth_date": "1999-05-18",
+        "can_be_contacted": true,
+        "can_data_be_shared": true,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+  "model": "project.contributor",
+  "pk": 1,
+  "fields": {
+      "project": 1,
+      "user": 2
+  }
+},
+{
+  "model": "project.contributor",
+  "pk": 2,
+  "fields": {
+      "project": 1,
+      "user": 3
+  }
+},
+{
+  "model": "project.contributor",
+  "pk": 3,
+  "fields": {
+      "project": 1,
+      "user": 4
+  }
+},
+{
+  "model": "project.contributor",
+  "pk": 4,
+  "fields": {
+      "project": 2,
+      "user": 2
+  }
+},
+{
+  "model": "project.contributor",
+  "pk": 5,
+  "fields": {
+      "project": 2,
+      "user": 4
+  }
+},
+{
+  "model": "project.contributor",
+  "pk": 6,
+  "fields": {
+      "project": 3,
+      "user": 3
+  }
+},
+{
+  "model": "project.contributor",
+  "pk": 7,
+  "fields": {
+      "project": 3,
+      "user": 5
+  }
+},
+{
+  "model": "project.contributor",
+  "pk": 8,
+  "fields": {
+      "project": 4,
+      "user": 4
+  }
+},
+{
+  "model": "project.contributor",
+  "pk": 9,
+  "fields": {
+      "project": 4,
+      "user": 6
+  }
+},
+{
+  "model": "project.contributor",
+  "pk": 10,
+  "fields": {
+      "project": 5,
+      "user": 5
+  }
+},
+{
+  "model": "project.contributor",
+  "pk": 11,
+  "fields": {
+      "project": 5,
+      "user": 6
+  }
+},
+{
+  "model": "project.contributor",
+  "pk": 12,
+  "fields": {
+      "project": 6,
+      "user": 6
+  }
+},
+{
+  "model": "project.contributor",
+  "pk": 13,
+  "fields": {
+      "project": 6,
+      "user": 4
+  }
+},
+{
+  "model": "project.project",
+  "pk": 1,
+  "fields": {
+    "date_created": "2025-04-07T09:47:57.890Z",
+    "title": "E-Commerce Platform",
+    "description": "A platform for online shopping.",
+    "type": "back-end",
+    "author": 2
+  }
+},
+{
+  "model": "project.project",
+  "pk": 2,
+  "fields": {
+    "date_created": "2025-04-07T09:47:57.890Z",
+    "title": "Social Media App",
+    "description": "A new social networking platform.",
+    "type": "front-end",
+    "author": 2
+  }
+},
+{
+  "model": "project.project",
+  "pk": 3,
+  "fields": {
+    "date_created": "2025-04-07T09:47:57.890Z",
+    "title": "Fitness Tracker",
+    "description": "A mobile app to track workouts.",
+    "type": "iOS",
+    "author": 3
+  }
+},
+{
+  "model": "project.project",
+  "pk": 4,
+  "fields": {
+    "date_created": "2025-04-07T09:47:57.890Z",
+    "title": "Smart Home App",
+    "description": "An application for smart devices.",
+    "type": "Android",
+    "author": 4
+  }
+},
+{
+  "model": "project.project",
+  "pk": 5,
+  "fields": {
+    "date_created": "2025-04-07T09:47:57.890Z",
+    "title": "AI Chatbot",
+    "description": "A chatbot for customer support.",
+    "type": "back-end",
+    "author": 5
+  }
+},
+{
+  "model": "project.project",
+  "pk": 6,
+  "fields": {
+    "date_created": "2025-04-07T09:47:57.890Z",
+    "title": "Music Streaming Service",
+    "description": "A platform for streaming music.",
+    "type": "front-end",
+    "author": 6
+  }
+},
+
+{
+  "model": "project.issue",
+  "pk": 1,
+  "fields": {
+      "title": "Fix checkout bug",
+      "date_created": "2025-04-07T13:54:58.964Z",
+      "description": "Users cannot complete checkout.",
+      "status": "To Do",
+      "priority": "High",
+      "nature": "Bug",
+      "author": 2,
+      "assigned": 3,
+      "project": 1
+  }
+},
+{
+  "model": "project.issue",
+  "pk": 2,
+  "fields": {
+      "title": "Implement discount system",
+      "date_created": "2025-04-07T13:54:58.964Z",
+      "description": "Add a promo code feature.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "nature": "Feature",
+      "author": 3,
+      "assigned": 2,
+      "project": 1
+  }
+},
+{
+  "model": "project.issue",
+  "pk": 3,
+  "fields": {
+      "title": "Improve search functionality",
+      "date_created": "2025-04-07T13:54:58.964Z",
+      "description": "Make search results more relevant.",
+      "status": "To Do",
+      "priority": "Medium",
+      "nature": "Feature",
+      "author": 1,
+      "assigned": 3,
+      "project": 1
+  }
+},
+{
+  "model": "project.issue",
+  "pk": 4,
+  "fields": {
+      "title": "Fix UI bug on mobile",
+      "date_created": "2025-04-07T13:54:58.964Z",
+      "description": "Product images are distorted.",
+      "status": "Finished",
+      "priority": "Low",
+      "nature": "Bug",
+      "author": 3,
+      "assigned": 2,
+      "project":  1
+  }
+},
+{
+  "model": "project.issue",
+  "pk": 5,
+  "fields": {
+      "title": "Fix message sending delay",
+      "date_created": "2025-04-07T13:54:58.964Z",
+      "description": "Messages take too long to send.",
+      "status": "In Progress",
+      "priority": "High",
+      "nature": "Bug",
+      "author": 4,
+      "project": 2,
+      "assigned": 1
+  }
+},
+{
+  "model": "project.issue",
+  "pk": 6,
+  "fields": {
+      "title": "Add heart rate monitor",
+      "date_created": "2025-04-07T13:54:58.964Z",
+      "description": "Integrate heart rate data.",
+      "status": "To Do",
+      "priority": "Medium",
+      "nature": "Feature",
+      "author": 5,
+      "assigned": 2,
+      "project": 6
+  }
+},
+{
+  "model": "project.issue",
+  "pk": 7,
+  "fields": {
+      "title": "Fix thermostat connectivity",
+      "date_created": "2025-04-07T13:54:58.964Z",
+      "description": "Thermostat not syncing.",
+      "status": "To Do",
+      "priority": "High",
+      "nature": "Bug",
+      "author": 6,
+      "assigned": 1,
+      "project": 4
+  }
+},
+{
+  "model": "project.issue",
+  "pk": 8,
+  "fields": {
+      "title": "Improve NLP accuracy",
+      "date_created": "2025-04-07T13:54:58.964Z",
+      "description": "Chatbot responses need improvement.",
+      "status": "In Progress",
+      "priority": "Medium",
+      "nature": "Feature",
+      "author": 3,
+      "assigned": 6,
+      "project": 5
+  }
+},
+{
+  "model": "project.issue",
+  "pk": 9,
+  "fields": {
+      "title": "Fix playlist shuffle",
+      "date_created": "2025-04-07T13:54:58.964Z",
+      "description": "Shuffle plays same songs repeatedly.",
+      "status": "To Do",
+      "priority": "High",
+      "nature": "Bug",
+      "author": 2,
+      "assigned": 4,
+      "project": 6
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "e28a600d-830e-450e-afcc-8f127ba1412f",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 2,
+      "description": "Investigating the issue.",
+      "issue": 1
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "7a2f5b52-82f9-4e65-bb51-b83c6239d8d2",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 3,
+      "description": "Possible fix in progress.",
+      "issue": 1
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "8cfa3a41-38be-45e2-87d3-65b432412a2a",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 2,
+      "description": "Designing the database schema.",
+      "issue": 2
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "28bfea5e-04f5-4b3f-8a3a-15ecdb3f3f6b",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 1,
+      "description": "UX considerations needed.",
+      "issue": 2
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "fe38bdb6-8f02-4538-bb15-0d26f66395a9",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 3,
+      "description": "Testing new ranking algorithm.",
+      "issue": 3
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "e4a88535-6828-4304-9067-8f9a6ef901a6",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 3,
+      "description": "Bug confirmed on multiple devices.",
+      "issue": 4
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "22bb443f-305e-4e08-9810-96d0fa48fc9a",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 2,
+      "description": "Fix deployed and tested.",
+      "issue": 4
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "ab2fc6c4-6de6-4a92-a460-ff8a7257a6c2",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 2,
+      "description": "Identified database latency issue.",
+      "issue": 5
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "c9ccacfc-9c32-4532-9e3d-04627072d3f3",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 4,
+      "description": "Optimizing the query performance.",
+      "issue": 5
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "4b51e0f2-50be-4c90-b81d-48b2bba250f7",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 3,
+      "description": "Checking API compatibility.",
+      "issue": 6
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "382c528e-882b-4de2-b8ff-2647dc50f86c",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 4,
+      "description": "Logs show connection timeout.",
+      "issue": 7
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "982f27a9-4155-4d3e-9e9f-b2fd020c9eaf",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 6,
+      "description": "Checking for API changes.",
+      "issue": 7
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "b1c03445-2682-4d8e-b2fd-e3049a093a0b",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 5,
+      "description": "Exploring new ML models.",
+      "issue": 8
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "db0d032f-3285-4fa6-acee-f6630bd46a1d",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 6,
+      "description": "Tuning hyperparameters.",
+      "issue": 8
+  }
+},
+{
+  "model": "project.comment",
+  "pk": "a587e51e-c4c3-41e4-99b9-15d58e3bb218",
+  "fields": {
+      "date_created": "2025-04-08T13:05:19.450Z",
+      "author": 6,
+      "description": "Checking randomization algorithm.",
+      "issue": 9
+  }
+}
+]

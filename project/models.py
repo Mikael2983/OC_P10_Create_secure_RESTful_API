@@ -2,12 +2,21 @@ import uuid
 
 from django.db import models
 
+from authenticated.models import User
 
-class User(models.Model):
-    username = models.CharField(max_length=255)
-    birth_date = models.DateField(null=True, blank=True)
-    can_be_contacted = models.BooleanField(null=True)
-    can_data_be_shared = models.BooleanField(null=True)
+
+class Contributor(models.Model):
+    project = models.ForeignKey('Project',
+                                on_delete=models.CASCADE,
+                                related_name="contributors"
+                                )
+    user = models.ForeignKey(User,
+                             on_delete=models.CASCADE,
+                             related_name="contributed_projects"
+                             )
+
+    class Meta:
+        unique_together = ('project', 'user')
 
 
 class Project(models.Model):
@@ -17,18 +26,17 @@ class Project(models.Model):
         ('iOS', 'iOS'),
         ('Android', 'Android')
     ]
-    create_time = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=2550)
     type = models.CharField(max_length=25, choices=TYPE_CHOICES)
-    contributors = models.ManyToManyField(
-        User,
-        related_name="contributed_projects"
-    )
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name="authored_projects")
+
+    def __str__(self):
+        return self.title
 
 
 class Issue(models.Model):
@@ -49,21 +57,28 @@ class Issue(models.Model):
     ]
 
     title = models.CharField(max_length=255)
-    create_time = models.DateTimeField(auto_now_add=True)
-    assigned = models.ForeignKey(
+    date_created = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name="assigned_issues")
+        related_name="issues_created")
+
+    assigned = models.ForeignKey(
+        User,
+        null=True,
+        on_delete=models.CASCADE,
+        related_name="issues_assigned")
 
     project = models.ForeignKey(
         Project,
-        on_delete=models.CASCADE
-    )
+        on_delete=models.CASCADE,
+        related_name="issues")
+
     description = models.CharField(max_length=2550)
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default='Todo'
+        default='To Do'
     )
     priority = models.CharField(
         max_length=20,
@@ -77,8 +92,17 @@ class Issue(models.Model):
 
 
 class Comment(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    create_time = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="authored_comments")
     description = models.CharField(max_length=255)
-    issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
+    issue = models.ForeignKey(
+        Issue,
+        on_delete=models.CASCADE,
+        related_name="issue_comments")

@@ -19,17 +19,20 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from project.views import IssueViewSet, CommentViewSet, ProjectViewSet
+from authenticated.views import UserCreateView, UserDetailView, UserDeleteView
+from project.urls import router as project_router
+
 
 router = DefaultRouter()
-router.register('issues', IssueViewSet, basename='issue')
-router.register('comments', CommentViewSet, basename='Comment')
-router.register('projects', ProjectViewSet, basename='project')
+router.registry.extend(project_router.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/', include(router.urls)),
+    path('users/register/', UserCreateView.as_view(), name='user-register'),
+    path('users/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
+    path('users/<int:pk>/delete/', UserDeleteView.as_view(), name='user-delete'),
+    path('api/v1/', include(router.urls)),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

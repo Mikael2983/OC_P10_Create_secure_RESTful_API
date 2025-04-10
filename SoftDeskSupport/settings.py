@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'authenticated',
     'project',
 ]
 
@@ -125,6 +126,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'authenticated.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
@@ -132,3 +134,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':
         ('rest_framework_simplejwt.authentication.JWTAuthentication',)
 }
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'api/V1/project'
+LOGOUT_REDIRECT_URL = 'login'
