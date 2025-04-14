@@ -89,7 +89,7 @@ To initialize the database, start by applying migrations.
 ```bash
 python manage.py migrate
 ```
-To properly view application functionality load data from dump_140325.json file
+To properly view application functionality load data from dump_08_04.json file
 ```bash
 python manage.py loaddata dump_08_04.json
 ```
