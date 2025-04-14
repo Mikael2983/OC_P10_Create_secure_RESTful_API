@@ -21,7 +21,7 @@ SoftDesk is a RESTful API developed in Python with Django REST Framework. It all
 ## 🛠️ Technologies used
 
 - Python 3.x
-- Django 4.x
+- Django 5.x
 - Django REST Framework
 - SimpleJWT
 - SQLite3 (by default)
