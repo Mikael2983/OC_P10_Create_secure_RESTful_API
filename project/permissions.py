@@ -2,7 +2,7 @@ from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 from project.models import Issue, Project, Comment
 
-UNSAFE_METHOD = ['POST', 'PUT', 'PATCH', 'DELETE']
+UNSAFE_METHODS = ['POST', 'PUT', 'PATCH', 'DELETE']
 
 
 class IsAuthor(BasePermission):
@@ -17,7 +17,7 @@ class IsAuthor(BasePermission):
         - Modification/deletion allowed only to the author of the object.
         """
 
-        if request.method in UNSAFE_METHOD:
+        if request.method in UNSAFE_METHODS:
             return obj.author == request.user  # Seul l’auteur peut modifier ou supprimer
 
         return True
@@ -92,7 +92,7 @@ class IsContributor(BasePermission):
 
         if request.method in SAFE_METHODS:
             return is_contributor
-        if request.method in UNSAFE_METHOD:
+        if request.method in UNSAFE_METHODS:
             return is_author
 
         return False
