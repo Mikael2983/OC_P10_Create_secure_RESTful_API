@@ -59,6 +59,8 @@ First, open the command prompt in the folder where you want to drop the clone.
 Clone this repository to your local machine.
 ```bash
 https://github.com/Mikael2983/OC_P10_Create_secure_RESTful_API.git
+```
+```bash
 cd OC_P10_Create_secure_RESTful_API
 ```
 
@@ -69,7 +71,7 @@ python -m venv env
 ```
 then with windows : 
 ```bash
-python -m venv env
+env/Scripts/activate
 ```
 or with Mac or linux 
 ```bash
@@ -127,14 +129,14 @@ Authorization: Bearer <your_token>
 
 ## 📂 Main endpoints
 
-| Resource       | methods available             | URL example                                   |
-|----------------|-------------------------------|-----------------------------------------------|
-| Users          | POST, GET, PATCH, DELETE      | `/users/`, `/users/{id}/`                     |
-| Authentication | POST                          | `/api/token/`, `/api/token/refresh/`          |
-| Projects       | GET, POST, PUT, PATCH, DELETE | `/api/v1/project/`                            |
-| Contributors   | POST, DELETE                  | `/api/v1/project/{id}/add_contributor/`       |
-| Issues         | GET, POST, PUT, PATCH, DELETE | `/api/v1/issue/`, `/api/v1/issue/{id}/`       |
-| Comments       | GET, POST, PUT, PATCH, DELETE | `/api/v1/comment/`, `/api/v1/comment/{uuid}/` |
+| Resource       | methods available             | URL example                                  |
+|----------------|-------------------------------|----------------------------------------------|
+| Users          | POST, GET, PATCH, DELETE      | `/users/`, `/users/{id}/`                    |
+| Authentication | POST                          | `/api/token/`, `/api/token/refresh/`         |
+| Projects       | GET, POST, PUT, PATCH, DELETE | `/api/v1/project/`, `/api/v1/project/{id}/`  |
+| Contributors   | POST, DELETE                  | `/api/v1/project/{id}/add_contributor/`      |
+| Issues         | GET, POST, PUT, PATCH, DELETE | `/api/v1/issue/`, `/api/v1/issue/{id}/`      |
+| Comments       | GET, POST, PUT, PATCH, DELETE | `/api/v1/comment/`, `/api/v1/comment/{uuid}/`|
 
 ---
 
