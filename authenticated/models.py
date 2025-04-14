@@ -7,4 +7,3 @@ class User(AbstractUser):
     birth_date = models.DateField()
     can_be_contacted = models.BooleanField(default=True)
     can_data_be_shared = models.BooleanField(default=True)
-
