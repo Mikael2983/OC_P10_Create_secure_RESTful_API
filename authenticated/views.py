@@ -1,9 +1,9 @@
 from django.contrib.auth import get_user_model
 from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView, \
-    DestroyAPIView
+    DestroyAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.exceptions import PermissionDenied
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserListSerializer
 
 User = get_user_model()
 
@@ -11,6 +11,12 @@ User = get_user_model()
 class UserCreateView(CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+
+class UserListView(ListAPIView):
+    queryset = User.ojbects.filter(can_data_be_shared=True)
+    serializer_class = UserListSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class UserDetailView(RetrieveUpdateAPIView):

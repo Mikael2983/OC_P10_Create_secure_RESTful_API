@@ -589,9 +589,9 @@
         "is_staff": true,
         "is_active": true,
         "date_joined": "2025-04-03T16:15:54.486Z",
-        "birth_date": null,
-        "can_be_contacted": null,
-        "can_data_be_shared": null,
+        "birth_date": "1982-01-01",
+        "can_be_contacted": false,
+        "can_data_be_shared": false,
         "groups": [],
         "user_permissions": []
     }
