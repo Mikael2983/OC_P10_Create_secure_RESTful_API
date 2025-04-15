@@ -14,7 +14,7 @@ class UserCreateView(CreateAPIView):
 
 
 class UserListView(ListAPIView):
-    queryset = User.ojbects.filter(can_data_be_shared=True)
+    queryset = User.objects.filter(can_data_be_shared=True)
     serializer_class = UserListSerializer
     permission_classes = [IsAuthenticated]
 
