@@ -142,7 +142,7 @@ class ContributorViewSet(ModelViewSet):
         return queryset
 
 
-class IssueViewSet(ModelViewSet):
+class IssueViewSet(MultipleSerializerMixin, ModelViewSet):
     serializer_class = IssueListSerializer
     detail_serializer_class = IssueDetailSerializer
     permission_classes = [IsAuthenticated, IsAuthor, IsContributor]

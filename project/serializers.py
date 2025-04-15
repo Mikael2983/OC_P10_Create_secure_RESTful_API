@@ -117,7 +117,7 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
         required=False
     )
 
-    issues = IssueSerializer(many=True, read_only=True)
+    issues = IssueListSerializer(many=True, read_only=True)
 
     class Meta:
         model = Project
