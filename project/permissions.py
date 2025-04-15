@@ -63,11 +63,11 @@ class IsContributor(BasePermission):
             return True
 
         if view.action == "create":
+            if view.basename != "project":
+                function_to_execute = self.GET_PROJECT[view.basename]
+                project = function_to_execute(request)
 
-            function_to_execute = self.GET_PROJECT[view.basename]
-            project = function_to_execute(request)
-
-            return project.contributors.filter(user=request.user).exists()
+                return project.contributors.filter(user=request.user).exists()
 
         return True
 
