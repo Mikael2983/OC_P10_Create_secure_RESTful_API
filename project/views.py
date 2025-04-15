@@ -8,8 +8,10 @@ from rest_framework.viewsets import ModelViewSet
 from authenticated.models import User
 from project.models import Project, Issue, Contributor, Comment
 from project.permissions import IsContributor, IsAuthor
-from project.serializers import ProjectListSerializer, IssueSerializer, \
-    CommentSerializer, ContributorSerializer, ProjectDetailSerializer
+from project.serializers import (
+    ProjectListSerializer, CommentSerializer, ContributorSerializer,
+    ProjectDetailSerializer, IssueListSerializer, IssueDetailSerializer
+)
 
 
 class MultipleSerializerMixin:
@@ -141,8 +143,8 @@ class ContributorViewSet(ModelViewSet):
 
 
 class IssueViewSet(ModelViewSet):
-    serializer_class = IssueSerializer
-    detail_serializer_class = IssueSerializer
+    serializer_class = IssueListSerializer
+    detail_serializer_class = IssueDetailSerializer
     permission_classes = [IsAuthenticated, IsAuthor, IsContributor]
 
     def get_queryset(self):

@@ -33,13 +33,27 @@ class CommentSerializer(serializers.ModelSerializer):
         return comment
 
 
-class IssueSerializer(serializers.ModelSerializer):
+class IssueListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Issue
+        fields = [
+            'id',
+            'title',
+            'status',
+            'date_created',
+            'project',
+        ]
+
+
+class IssueDetailSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
     assigned = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all(), allow_null=True)
     project = serializers.PrimaryKeyRelatedField(
         queryset=Project.objects.all())
-    comments = CommentSerializer(many=True, read_only=True)
+
+    comments = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Issue
@@ -56,6 +70,12 @@ class IssueSerializer(serializers.ModelSerializer):
             'project',
             'comments'
         ]
+
+    def get_comments(self,instance):
+        queryset = instance.issue_comments.all()
+        serializer = CommentSerializer(queryset, many=True)
+        return serializer.data
+
 
     def validate(self, data):
 
