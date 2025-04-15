@@ -4,9 +4,9 @@ from rest_framework.routers import DefaultRouter
 from project.views import IssueViewSet, CommentViewSet, ProjectViewSet
 
 router = DefaultRouter()
-router.register('project', ProjectViewSet, basename='project')
-router.register('issue', IssueViewSet, basename='issue')
-router.register('comment', CommentViewSet, basename='comment')
+router.register('projects', ProjectViewSet, basename='project')
+router.register('issues', IssueViewSet, basename='issue')
+router.register('comments', CommentViewSet, basename='comment')
 
 urlpatterns = [
     path('', include(router.urls), name='project'),
