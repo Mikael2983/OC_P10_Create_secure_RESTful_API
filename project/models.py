@@ -27,7 +27,7 @@ class Project(models.Model):
         ('Android', 'Android')
     ]
     date_created = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, unique=True)
     description = models.CharField(max_length=2550)
     type = models.CharField(max_length=25, choices=TYPE_CHOICES)
     author = models.ForeignKey(
@@ -89,6 +89,14 @@ class Issue(models.Model):
         max_length=20,
         choices=NATURE_CHOICES
     )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['title', 'project'],
+                name='unique_issue_title_per_project'
+            )
+        ]
 
 
 class Comment(models.Model):
