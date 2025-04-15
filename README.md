@@ -58,7 +58,7 @@ choose and download the version of Git that corresponds to your installation: Ma
 First, open the command prompt in the folder where you want to drop the clone.
 Clone this repository to your local machine.
 ```bash
-https://github.com/Mikael2983/OC_P10_Create_secure_RESTful_API.git
+git clone https://github.com/Mikael2983/OC_P10_Create_secure_RESTful_API.git
 ```
 ```bash
 cd OC_P10_Create_secure_RESTful_API
