@@ -5,6 +5,10 @@ from .models import Comment, Issue, Project, Contributor
 
 
 class ContributorSerializer(serializers.ModelSerializer):
+    """
+    Serializer to represent a contributor to a project.
+    Displays user information using the UserListSerializer.
+    """
     user = UserListSerializer(read_only=True)
 
     class Meta:
@@ -13,6 +17,10 @@ class ContributorSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    """
+    Serializer for comments related to an issue.
+    Provides details of the comment and the author and associated issue.
+    """
     author = serializers.StringRelatedField(read_only=True)
     issue = serializers.PrimaryKeyRelatedField(
         queryset=Issue.objects.all(), allow_null=False)
@@ -27,6 +35,10 @@ class CommentSerializer(serializers.ModelSerializer):
                   ]
 
     def create(self, validated_data):
+        """
+        Creates a new comment by automatically associating
+        the current user as author.
+        """
         request = self.context.get('request')
         validated_data['author'] = request.user
         comment = Comment.objects.create(**validated_data)
@@ -34,7 +46,10 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class IssueListSerializer(serializers.ModelSerializer):
-
+    """
+    Simplified serializer to display a list of issues.
+    Provides the main information of an issue.
+    """
     class Meta:
         model = Issue
         fields = [
@@ -47,6 +62,11 @@ class IssueListSerializer(serializers.ModelSerializer):
 
 
 class IssueDetailSerializer(serializers.ModelSerializer):
+    """
+    Detailed serializer for an issue.
+    Displays all relevant information, including author,
+    the assigned user, comments, and associated project.
+    """
     author = serializers.StringRelatedField(read_only=True)
     assigned = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all(), allow_null=True)
@@ -71,14 +91,18 @@ class IssueDetailSerializer(serializers.ModelSerializer):
             'comments'
         ]
 
-    def get_comments(self,instance):
+    def get_comments(self, instance):
+        """
+        Retrieves and serializes comments associated with this issue.
+        """
         queryset = instance.issue_comments.all()
         serializer = CommentSerializer(queryset, many=True)
         return serializer.data
 
-
     def validate(self, data):
-
+        """
+        Validates that the assigned user is a contributor to the project.
+        """
         assigned_user = data.get('assigned')
         project = data.get('project')
         if assigned_user and not project.contributors.filter(user=assigned_user).exists():
@@ -86,6 +110,9 @@ class IssueDetailSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
+        """
+        Creates an issue by automatically assigning the author to the current user.
+        """
         request = self.context.get('request')
         validated_data['author'] = request.user
         issue = Issue.objects.create(**validated_data)
@@ -93,6 +120,10 @@ class IssueDetailSerializer(serializers.ModelSerializer):
 
 
 class ProjectListSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the list of projects.
+    Provides essential information about a project.
+    """
     class Meta:
         model = Project
         fields = ['id',
@@ -104,6 +135,11 @@ class ProjectListSerializer(serializers.ModelSerializer):
 
 
 class ProjectDetailSerializer(serializers.ModelSerializer):
+    """
+    Detailed serializer for a project.
+    Includes information from the author, contributors and associated issues.
+    Also allows adding contributors via a list of IDs.
+    """
     author = serializers.StringRelatedField(read_only=True)
 
     contributors_info = ContributorSerializer(
@@ -133,6 +169,10 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
                   ]
 
     def create(self, validated_data):
+        """
+        Creates a new project and assigns it to the current user as author.
+        Also adds the contributors specified in `contributors_ids’.
+        """
         request = self.context.get('request')
         validated_data.pop('author', None)  # delete the author field from data
         author = request.user

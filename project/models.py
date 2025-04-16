@@ -6,6 +6,10 @@ from authenticated.models import User
 
 
 class Contributor(models.Model):
+    """
+    Template representing a link between a user and a project as a contributor.
+    A user can only be a contributor once per project.
+    """
     project = models.ForeignKey('Project',
                                 on_delete=models.CASCADE,
                                 related_name="contributors"
@@ -20,6 +24,11 @@ class Contributor(models.Model):
 
 
 class Project(models.Model):
+    """
+    Model representing a software project.
+    A project has an author, type (backend, frontend, etc.), unique title and
+    description.
+    """
     TYPE_CHOICES = [
         ('back-end', 'back-end'),
         ('front-end', 'front-end'),
@@ -40,6 +49,23 @@ class Project(models.Model):
 
 
 class Issue(models.Model):
+    """
+    Template representing an issue (bug, task or feature) associated with a
+    project.
+
+    Each issue includes:
+    - a title,
+    - a description,
+    - a priority (Low, Medium, High),
+    - a status (To Do, In Progress, Finished),
+    - a nature (Bug, Feature, Task),
+    - an author (creator of the issue),
+    - an assigned user (optional),
+    - a creation date.
+
+    Constraint of uniqueness:
+    - Issue title must be unique **within the same project**.
+    """
     STATUS_CHOICES = [
         ('To Do', 'To Do'),
         ('In Progress', 'In Progress'),
@@ -100,6 +126,10 @@ class Issue(models.Model):
 
 
 class Comment(models.Model):
+    """
+    Template representing comment made on issue.
+    Each comment is linked to a specific author and issue.
+    """
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,

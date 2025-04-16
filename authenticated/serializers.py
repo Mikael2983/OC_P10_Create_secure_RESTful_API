@@ -8,12 +8,19 @@ User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Main serializer for the creation and validation of a complete user,
+    including sensitive fields such as password and date of birth.
+    """
     class Meta:
         model = User
         fields = ['id', 'username', 'password', 'email', 'birth_date', 'can_be_contacted', 'can_data_be_shared']
 
     def validate_birth_date(self, value):
-        """Verify that the user is at least 15 years old."""
+        """
+        Valid that the user is at least 15 years old on the current date.
+        Raises a ValidationError if not.
+        """
         today = date.today()
         age = today.year - value.year - (
                     (today.month, today.day) < (value.month, value.day))
@@ -23,7 +30,9 @@ class UserSerializer(serializers.ModelSerializer):
         return value
 
     def create(self, validated_data):
-        """Crée un utilisateur avec un mot de passe haché."""
+        """
+        Creates a new user with a hashed password from the validated data.
+        """
         password = validated_data.pop('password')
         user = User.objects.create_user(**validated_data)
         user.set_password(password)
@@ -32,6 +41,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserListSerializer(serializers.ModelSerializer):
+    """
+    Serializer used to display a public or restricted view of the user.
+    Does not contain sensitive data (e.g. password or email).
+    """
     class Meta:
         model = User
         fields = ['id', 'username', 'can_be_contacted', 'can_data_be_shared']
