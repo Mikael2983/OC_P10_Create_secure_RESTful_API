@@ -10,8 +10,12 @@ from authenticated.models import User
 from project.models import Project, Issue, Contributor, Comment
 from project.permissions import IsContributor, IsAuthor
 from project.serializers import (
-    ProjectListSerializer, CommentSerializer, ContributorSerializer,
-    ProjectDetailSerializer, IssueListSerializer, IssueDetailSerializer
+    ProjectListSerializer,
+    CommentSerializer,
+    ContributorSerializer,
+    ProjectDetailSerializer,
+    IssueListSerializer,
+    IssueDetailSerializer,
 )
 
 
@@ -20,13 +24,14 @@ class MultipleSerializerMixin:
     Allows you to use a different serializer for retail actions
     (retrieve, create, update, partial_update) in a ViewSet.
     """
+
     detail_serializer_class = None
 
     def get_serializer_class(self):
         """
         Returns the appropriate serializer according to the action.
         """
-        method = ['retrieve', 'create', 'update', 'partial_update']
+        method = ["retrieve", "create", "update", "partial_update"]
         if self.action in method and self.detail_serializer_class is not None:
             return self.detail_serializer_class
         return super().get_serializer_class()
@@ -39,6 +44,7 @@ class ProjectViewSet(MultipleSerializerMixin, ModelViewSet):
     - create a project (automatically assigned to the author),
     - add or remove a contributor (if the user is the author).
     """
+
     serializer_class = ProjectListSerializer
     detail_serializer_class = ProjectDetailSerializer
     permission_classes = [IsAuthenticated, IsAuthor, IsContributor]
@@ -51,7 +57,8 @@ class ProjectViewSet(MultipleSerializerMixin, ModelViewSet):
 
     def perform_create(self, serializer):
         """
-        When creating a project, the author is automatically defined as the current user.
+        When creating a project, the author is automatically defined as the
+        current user.
         """
         serializer.save(author=self.request.user)
 
@@ -59,7 +66,7 @@ class ProjectViewSet(MultipleSerializerMixin, ModelViewSet):
         """
         Do not use PUT. Use PATCH for updates.
         """
-        if request.method == 'PUT':
+        if request.method == "PUT":
             raise MethodNotAllowed("PUT")
         return super().update(request, *args, **kwargs)
 
@@ -74,10 +81,10 @@ class ProjectViewSet(MultipleSerializerMixin, ModelViewSet):
         if project.author != request.user:
             return Response(
                 {
-                    "error": "Seul l'auteur du projet peut ajouter un contributeur.",
-                    "code": "author_only"
+                    "error": "Seul l'auteur peut ajouter un contributeur.",
+                    "code": "author_only",
                 },
-                status=status.HTTP_403_FORBIDDEN
+                status=status.HTTP_403_FORBIDDEN,
             )
 
         user_id = request.data.get("user_id")
@@ -85,9 +92,9 @@ class ProjectViewSet(MultipleSerializerMixin, ModelViewSet):
             return Response(
                 {
                     "error": "L'ID de l'utilisateur est requis.",
-                    "code": "user_id_required"
+                    "code": "user_id_required",
                 },
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         user = get_object_or_404(User, pk=user_id)
@@ -95,20 +102,20 @@ class ProjectViewSet(MultipleSerializerMixin, ModelViewSet):
         if Contributor.objects.filter(project=project, user=user).exists():
             return Response(
                 {
-                    "message": "Cet utilisateur est déjà contributeur du projet.",
-                    "code": "already_contributor"
+                    "error": "Cet utilisateur est déjà un contributeur.",
+                    "code": "already_contributor",
                 },
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         Contributor.objects.create(project=project, user=user)
 
         return Response(
             {
-                "message": f"L'utilisateur {user.username} a été ajouté comme contributeur.",
-                "code": "contributor_added"
+                "message": f"L'utilisateur {user.username} a été ajouté comme contributeur.",  # Noqa: E501
+                "code": "contributor_added",
             },
-            status=status.HTTP_201_CREATED
+            status=status.HTTP_201_CREATED,
         )
 
     @action(detail=True, methods=["delete"], url_path="del_contributor")
@@ -121,20 +128,20 @@ class ProjectViewSet(MultipleSerializerMixin, ModelViewSet):
         if project.author != request.user:
             return Response(
                 {
-                    "error": "Seul l'auteur du projet peut retirer un contributeur.",
-                    "code": "author_only"
+                    "error": "Seul l'auteur peut retirer un contributeur.",
+                    "code": "author_only",
                 },
-                status=status.HTTP_403_FORBIDDEN
+                status=status.HTTP_403_FORBIDDEN,
             )
 
         user_id = request.data.get("user_id")
         if not user_id:
             return Response(
                 {
-                    "error": "L'ID de l'utilisateur est requis. format 'user_id': id",
-                    "code": "user_id_required"
+                    "error": "L'ID de l'utilisateur est requis. 'user_id': id",
+                    "code": "user_id_required",
                 },
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         user = get_object_or_404(User, pk=user_id)
@@ -143,28 +150,28 @@ class ProjectViewSet(MultipleSerializerMixin, ModelViewSet):
             return Response(
                 {
                     "error": "l'auteur ne peut être retirer des contributeurs",
-                    "code": "cannot_remove_author"
+                    "code": "cannot_remove_author",
                 },
-                status=status.HTTP_403_FORBIDDEN
+                status=status.HTTP_403_FORBIDDEN,
             )
 
         contributor = Contributor.objects.filter(project=project, user=user).first()
+
         if not contributor:
             return Response(
                 {
-                    "error": "Cet utilisateur n'est pas un contributeur du projet.",
-                    "code": "not_a_contributor"
+                    "error": "Cet utilisateur n'est pas un contributeur.",
+                    "code": "not_a_contributor",
                 },
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
-
         contributor.delete()
         return Response(
             {
-                "message": f"L'utilisateur {user.username} a été retiré du projet.",
-                "code": "contributor_removed"
+                "message": f"L'utilisateur {user.username} a été retiré du projet.",  # noqa: E501
+                "code": "contributor_removed",
             },
-            status=status.HTTP_201_CREATED
+            status=status.HTTP_201_CREATED,
         )
 
 
@@ -173,6 +180,7 @@ class ContributorViewSet(ModelViewSet):
     ViewSet to view user contributions.
     The user sees only his own contributions.
     """
+
     queryset = Contributor.objects.all()
     serializer_class = ContributorSerializer
 
@@ -190,6 +198,7 @@ class IssueViewSet(MultipleSerializerMixin, ModelViewSet):
     Only contributors can view issues.
     Only author can edit issues.
     """
+
     serializer_class = IssueListSerializer
     detail_serializer_class = IssueDetailSerializer
     permission_classes = [IsAuthenticated, IsAuthor, IsContributor]
@@ -198,15 +207,14 @@ class IssueViewSet(MultipleSerializerMixin, ModelViewSet):
         """
         Returns issues related to projects where the user is a contributor.
         """
-        queryset = Issue.objects.filter(
-            project__contributors__user=self.request.user)
+        queryset = Issue.objects.filter(project__contributors__user=self.request.user)
         return queryset
 
     def update(self, request, *args, **kwargs):
         """
         Do not use PUT. Use PATCH for updates.
         """
-        if request.method == 'PUT':
+        if request.method == "PUT":
             raise MethodNotAllowed("PUT")
         return super().update(request, *args, **kwargs)
 
@@ -217,6 +225,7 @@ class CommentViewSet(ModelViewSet):
     Only contributors can view comments.
     Only author can edit comments.
     """
+
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated, IsAuthor, IsContributor]
 
@@ -225,13 +234,14 @@ class CommentViewSet(ModelViewSet):
         Returns comments related to projects where the user is a contributor.
         """
         queryset = Comment.objects.filter(
-            issue__project__contributors__user=self.request.user)
+            issue__project__contributors__user=self.request.user
+        )
         return queryset
 
     def update(self, request, *args, **kwargs):
         """
         Do not use PUT. Use PATCH for updates.
         """
-        if request.method == 'PUT':
+        if request.method == "PUT":
             raise MethodNotAllowed("PUT")
         return super().update(request, *args, **kwargs)

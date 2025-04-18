@@ -2,97 +2,62 @@ from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 from project.models import Issue, Project, Comment
 
-UNSAFE_METHODS = ['POST', 'PUT', 'PATCH', 'DELETE']
-
 
 class IsAuthor(BasePermission):
     """
-    - Allowed reading to project contributors.
-    - Modification and deletion reserved to the author of the object.
+    Grants modification and deletion rights only to the object's author.
     """
 
     def has_object_permission(self, request, view, obj):
         """
-        - Read allowed if the user is a contributor to the project.
-        - Modification/deletion allowed only to the author of the object.
+        - Safe methods: always allowed.
+        - Unsafe methods: allowed only if user is the author.
         """
-
-        if request.method in UNSAFE_METHODS:
-            return obj.author == request.user  # Seul l’auteur peut modifier ou supprimer
-
-        return True
+        if request.method in SAFE_METHODS:
+            return True
+        return obj.author == request.user
 
 
 class IsContributor(BasePermission):
     """
-    - Only contributors to a project can see its details and create issues/comments.
-    - Only the author can edit or delete a project, issue or comment.
+    Grants access to project contributors for reading and creating content.
     """
 
     @staticmethod
-    def get_project_from_issue_id(request):
-        issue_id = request.data.get("issue")
-        issue = Issue.objects.get(id=issue_id)
-        return issue.project
+    def get_project_from_request(request, basename):
+        if basename == "comment":
+            issue_id = request.data.get("issue")
+            return Issue.objects.get(id=issue_id).project
+        if basename == "issue":
+            project_id = request.data.get("project")
+            return Project.objects.get(id=project_id)
+        return None  # for other cases like project itself
 
     @staticmethod
-    def get_project_from_project_id(request):
-        project_id = request.data.get("project")
-        return Project.objects.get(id=project_id)
-
-    @staticmethod
-    def get_project_from_comment(item):
-        return item.issue.project
-
-    @staticmethod
-    def get_project_from_issue(item):
-        return item.project
-
-    @staticmethod
-    def get_project(item):
-        return item
-
-    GET_PROJECT = {
-        "comment": get_project_from_issue_id,
-        "issue": get_project_from_project_id
-    }
+    def get_project_from_object(obj):
+        if isinstance(obj, Project):
+            return obj
+        if isinstance(obj, Issue):
+            return obj.project
+        if isinstance(obj, Comment):
+            return obj.issue.project
+        return None
 
     def has_permission(self, request, view):
-
+        """
+        - Allow listing for all authenticated users.
+        - Require contributor status for creation (except project).
+        """
         if view.action == "list":
             return True
-
-        if view.action == "create":
-            if view.basename != "project":
-                function_to_execute = self.GET_PROJECT[view.basename]
-                project = function_to_execute(request)
-
-                return project.contributors.filter(user=request.user).exists()
-
+        if view.action == "create" and view.basename != "project":
+            project = self.get_project_from_request(request, view.basename)
+            return project and project.contributors.filter(user=request.user).exists()
         return True
 
     def has_object_permission(self, request, view, obj):
         """
-        - Lecture : Seuls les contributeurs du projet peuvent voir les détails.
-        - Modification/Suppression : Réservée à l'auteur de l'objet.
+        - Read access allowed to contributors.
         """
-
-        mapping = {
-            Project: self.get_project,
-            Issue: self.get_project_from_issue,
-            Comment: self.get_project_from_comment
-        }
-
-        function_to_execute = mapping.get(type(obj))
-        project = function_to_execute(obj)
-
-        is_contributor = project.contributors.filter(
-            user=request.user).exists()
-        is_author = obj.author == request.user
-
-        if request.method in SAFE_METHODS:
-            return is_contributor
-        if request.method in UNSAFE_METHODS:
-            return is_author
-
-        return False
+        project = self.get_project_from_object(obj)
+        return project and project.contributors.filter(user=request.user).exists()

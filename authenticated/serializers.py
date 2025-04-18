@@ -14,7 +14,14 @@ class UserSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = User
-        fields = ['id', 'username', 'password', 'email', 'birth_date', 'can_be_contacted', 'can_data_be_shared']
+        fields = ['id',
+                  'username',
+                  'password',
+                  'email',
+                  'birth_date',
+                  'can_be_contacted',
+                  'can_data_be_shared'
+                  ]
 
     def validate_birth_date(self, value):
         """

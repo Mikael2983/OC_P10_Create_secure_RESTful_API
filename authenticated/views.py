@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
-from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView, \
-    DestroyAPIView, ListAPIView
-from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.generics import (
+    CreateAPIView, RetrieveUpdateAPIView, DestroyAPIView, ListAPIView
+)
+from rest_framework.permissions import IsAuthenticated, AllowAny
+
 from .serializers import UserSerializer, UserListSerializer
 
 User = get_user_model()
@@ -34,7 +36,7 @@ class UserDetailView(RetrieveUpdateAPIView):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated, ]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self):
         """
