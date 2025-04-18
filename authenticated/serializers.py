@@ -23,7 +23,8 @@ class UserSerializer(serializers.ModelSerializer):
                   'can_data_be_shared'
                   ]
 
-    def validate_birth_date(self, value):
+    @staticmethod
+    def validate_birth_date(value):
         """
         Valid that the user is at least 15 years old on the current date.
         Raises a ValidationError if not.

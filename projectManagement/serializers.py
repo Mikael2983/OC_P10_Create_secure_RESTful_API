@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from authenticated.serializers import UserListSerializer
 from authenticated.models import User
-from .models import Comment, Issue, Project, Contributor
+from projectManagement.models import Comment, Issue, Project, Contributor
 
 
 class ContributorSerializer(serializers.ModelSerializer):

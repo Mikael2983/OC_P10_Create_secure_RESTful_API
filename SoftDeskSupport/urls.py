@@ -19,7 +19,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 
-from project.urls import router as project_router
+from projectManagement.urls import router as project_router
 
 
 router = DefaultRouter()

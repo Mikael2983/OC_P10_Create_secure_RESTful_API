@@ -1,6 +1,8 @@
 from rest_framework.routers import DefaultRouter
 
-from project.views import IssueViewSet, CommentViewSet, ProjectViewSet
+from projectManagement.views import (
+    IssueViewSet, CommentViewSet, ProjectViewSet
+)
 
 router = DefaultRouter()
 router.register("projects", ProjectViewSet, basename="project")

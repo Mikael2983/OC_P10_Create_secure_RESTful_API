@@ -1,6 +1,6 @@
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
-from project.models import Issue, Project, Comment
+from projectManagement.models import Issue, Project, Comment
 
 
 class IsAuthor(BasePermission):

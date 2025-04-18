@@ -7,9 +7,9 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from authenticated.models import User
-from project.models import Project, Issue, Contributor, Comment
-from project.permissions import IsContributor, IsAuthor
-from project.serializers import (
+from projectManagement.models import Project, Issue, Contributor, Comment
+from projectManagement.permissions import IsContributor, IsAuthor
+from projectManagement.serializers import (
     ProjectListSerializer,
     CommentSerializer,
     ContributorSerializer,

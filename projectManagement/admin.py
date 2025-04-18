@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
-from project.models import Project, Issue, Comment, Contributor
+from projectManagement.models import Project, Issue, Comment, Contributor
 
 
 class ProjectAdmin(ModelAdmin):

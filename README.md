@@ -129,14 +129,15 @@ Authorization: Bearer <your_token>
 
 ## 📂 Main endpoints
 
-| Resource       | methods available           | URL example                                    |
-|----------------|-----------------------------|------------------------------------------------|
-| Users          | GET, POST, PATCH, DELETE    | `/api/v1/users/`, `api/v1//users/{id}/`        |
-| Authentication | POST                        | `/api/token/`, `/api/token/refresh/`           |
-| Projects       | GET, POST, PATCH, DELETE    | `/api/v1/projects/`, `/api/v1/projects/{id}/`  |
-| Contributors   | POST, DELETE                | `/api/v1/projects/{id}/add_contributor/`       |
-| Issues         | GET, POST, PATCH, DELETE    | `/api/v1/issues/`, `/api/v1/issues/{id}/`      |
-| Comments       | GET, POST, PATCH, DELETE    | `/api/v1/comments/`, `/api/v1/comments/{uuid}/`|
+| Resource       | methods available        | URL example                                     |
+|----------------|--------------------------|-------------------------------------------------|
+| Users          | GET, POST, PATCH, DELETE | `/api/v1/users/`, `api/v1/users/{id}/`          |
+| Authentication | POST                     | `/api/v1/token/`, `/api/v1/token/refresh/`      |
+| Projects       | GET, POST, PATCH, DELETE | `/api/v1/projects/`, `/api/v1/projects/{id}/`   |
+| Contributors   | POST                     | `/api/v1/projects/{id}/add_contributor/`        |
+| Contributors   | DELETE                   | `/api/v1/projects/{id}/del_contributor/`        |
+| Issues         | GET, POST, PATCH, DELETE | `/api/v1/issues/`, `/api/v1/issues/{id}/`       |
+| Comments       | GET, POST, PATCH, DELETE | `/api/v1/comments/`, `/api/v1/comments/{uuid}/` |
 
 ---
 
