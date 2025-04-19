@@ -20,10 +20,10 @@ SoftDesk is a RESTful API developed in Python with Django REST Framework. It all
 
 ## 🛠️ Technologies used
 
-- Python 3.x
-- Django 5.x
-- Django REST Framework
-- SimpleJWT
+- Python 3.12.1
+- Django 5.1.8
+- Django REST Framework 3.15.2
+- SimpleJWT 
 - SQLite3 (by default)
 - Postman (for test)
 
@@ -85,7 +85,11 @@ pip install -r requirements.txt
 ```
 
 ### 4. initalize database
-To initialize the database, start by applying migrations.
+To initialize the database, first, create new migrations
+```bash
+python manage.py makemigrations authenticated projectManagement
+```
+Then, apply migrations.
 ```bash
 python manage.py migrate
 ```
