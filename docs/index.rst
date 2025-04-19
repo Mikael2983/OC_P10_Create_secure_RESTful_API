@@ -3,172 +3,391 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to SoftDesk Support API Documentation
-=============================================
-
-Ce projet propose une API sécurisée permettant de :
-
- * gérer des projets logiciels collaboratifs
- * suivre des tickets (issues)
- * commenter les tâches
- * gérer des contributeurs via un système d’autorisation
-
 SoftDesk Support API Documentation
 ==================================
 
 Bienvenue sur la documentation officielle de l'API RESTful SoftDesk Support.
-Ce document décrit les endpoints disponibles, les méthodes HTTP autorisées, les paramètres requis, et les schémas JSON attendus.
 
-----
+Ce projet propose une API sécurisée permettant de :
+
+* gérer des projets logiciels collaboratifs
+* suivre des tickets (issues)
+* commenter les tâches
+* gérer des contributeurs via un système d’autorisation
+
+.. contents::
+   :local:
+   :depth: 2
 
 Authentification
 ----------------
 
-**POST** `/users/register/`
-Inscrire un nouvel utilisateur.
+Inscription d’un nouvel utilisateur
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Requête :
-- `username`: string
-- `password`: string
-- `email`: string
-- `birth_date`: string (date)
-- `can_be_contacted`: boolean
-- `can_data_be_shared`: boolean
+.. code-block:: http
 
-**POST** `/token/`
-Obtenir un token JWT.
+   POST /users/register/
 
-Requête :
-- `username`: string
-- `password`: string
+Inscrit un nouvel utilisateur.
 
-**POST** `/token/refresh/`
-Rafraîchir un token JWT.
+**Corps de la requête :**
 
-Requête :
-- `refresh`: string
+.. code-block:: json
+
+   {
+     "username": "john_doe",
+     "password": "MotDePasse123!",
+     "email": "john@example.com",
+     "birth_date": "2000-01-01",
+     "can_be_contacted": true,
+     "can_data_be_shared": false
+   }
+
+**Contraintes :**
+* L'utilisateur doit avoir au moins 15 ans
+* L'email doit être unique
+* Le mot de passe est hashé automatiquement
+
+---
+
+Obtenir un token JWT
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   POST /token/
+
+Permet à un utilisateur de récupérer un token d’accès JWT.
+
+**Corps de la requête :**
+
+.. code-block:: json
+
+   {
+     "username": "john_doe",
+     "password": "MotDePasse123!"
+   }
+
+**Contraintes :**
+* Les identifiants doivent être valides
+
+---
+
+Rafraîchir un token JWT
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   POST /token/refresh/
+
+Permet de renouveler un token d'accès JWT.
+
+**Corps de la requête :**
+
+.. code-block:: json
+
+   {
+     "refresh": "eyJ0eXAiOiJKV1QiLCJhbGci..."
+   }
+
+**Contraintes :**
+* Le token doit être encore valide
+
+---
 
 Utilisateurs
 ------------
 
-**GET** `/users/`
-Lister les utilisateurs publics (username uniquement).
+Lister les utilisateurs
+^^^^^^^^^^^^^^^^^^^^^^^
 
-**GET** `/users/{id}/`
-Voir les détails de son profil.
-le profil des autres utilisateurs n'est pas accessible.
+.. code-block:: http
 
-----
+   GET /users/
+
+Renvoie une liste des utilisateurs publics (username uniquement).
+
+---
+
+Voir son propre profil
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   GET /users/{id}/
+
+Renvoie les informations du profil connecté.
+
+**Contraintes :**
+* Le profil des autres utilisateurs n’est pas accessible
+
+---
 
 Projets
 -------
 
-**GET** `/projects/`
-Lister les projets visibles dont l'utilisateur est un contributeur.
+Lister les projets
+^^^^^^^^^^^^^^^^^^
 
-**POST** `/projects/`
-Créer un projet.
+.. code-block:: http
 
-Requête :
-- `title`: string
-- `description`: string
-- `type`: string (back-end, front-end, iOS, Android)
-- `contributors_ids`: liste d'integer  (id d'utilisateur)
+   GET /projects/
 
-**GET** `/projects/{id}/`
-Voir les détails d'un projet.
+Liste les projets visibles par l’utilisateur connecté (s’il est contributeur).
 
-**DELETE** `/projects/{id}/`
-supprimer un projet.
+---
 
-**PATCH** `/projects/{id}/`
-modifier un projet.
+Créer un projet
+^^^^^^^^^^^^^^^
 
-Requête :
-- `title`: string
-- `description`: string
-- `type`: string (back-end, front-end, iOS, Android)
+.. code-block:: http
 
-le champs `contributors_ids` ne fonctionne que lors de la création du project.
-Pour ajouter ou supprimer des contributeurs au projet, voir ci-dessous.
-Seul l'auteur du projet peut ajouter ou retirer des contributeurs
+   POST /projects/
 
-**POST** `/projects/{id}/add_contributor/`
-Ajouter un contributeur.
+Crée un nouveau projet.
 
-Requête :
-- `user_id`: integer
+**Corps de la requête :**
 
-**DELETE** `/projects/{id}/del_contributor/`
-Supprimer un contributeur.
+.. code-block:: json
 
-Requête :
-- `user_id`: integer
+   {
+     "title": "Nom du projet",
+     "description": "Description du projet",
+     "type": "back-end",
+     "contributors_ids": [2, 3]
+   }
 
-----
+**Contraintes :**
+* L’auteur est automatiquement ajouté comme contributeur
+* `contributors_ids` ne fonctionne que lors de la création
+
+---
+
+Voir un projet
+^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   GET /projects/{id}/
+
+Renvoie les détails du projet.
+
+---
+
+Modifier un projet
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   PATCH /projects/{id}/
+
+Permet de modifier un projet existant.
+
+**Corps de la requête (exemple partiel) :**
+
+.. code-block:: json
+
+   {
+     "title": "Nouveau titre",
+     "description": "Nouvelle description",
+     "type": "iOS"
+   }
+
+**Contraintes :**
+* Seul l’auteur du projet peut le modifier
+* `contributors_ids` non pris en charge ici
+
+---
+
+Supprimer un projet
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   DELETE /projects/{id}/
+
+Supprime le projet.
+
+**Contraintes :**
+* Seul l’auteur peut supprimer un projet
+
+---
+
+Ajouter un contributeur
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   POST /projects/{id}/add_contributor/
+
+Ajoute un contributeur à un projet.
+
+**Corps de la requête :**
+
+.. code-block:: json
+
+   {
+     "user_id": 4
+   }
+
+**Contraintes :**
+* Seul l’auteur du projet peut ajouter un contributeur
+
+---
+
+Supprimer un contributeur
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   DELETE /projects/{id}/del_contributor/
+
+Retire un contributeur du projet.
+
+**Corps de la requête :**
+
+.. code-block:: json
+
+   {
+     "user_id": 4
+   }
+
+**Contraintes :**
+* Seul l’auteur peut retirer un contributeur
+* L’auteur ne peut pas se retirer lui-même
+
+---
 
 Issues (Tâches)
 ---------------
 
-**GET** `/issues/`
-Lister toutes les issues des projets dont l'utilisateur est contributeur.
+Lister les issues
+^^^^^^^^^^^^^^^^^
 
-**POST** `/issues/`
-Créer une issue.
+.. code-block:: http
 
-Requête :
-- `title`: string
-- `description`: string
-- `priority`: Low / Medium / High
-- `status`: To Do / In Progress / Finished
-- `nature`: Bug / Feature / Task
-- `assigned`: integer (id de l’utilisateur)
-- `project`: integer (id du projet)
+   GET /issues/
 
-Contraintes :
-- `title`: deux issues d'un même projet ne peuvent pas avoir le même titre
-- `assigned`: l'utilisateur doit être contributeur du projet
-- `project`: l'auteur de l'issue doit être contributeur du projet
-- `author`: l'utilisateur connecté est ajouté automatiquement
-- `date_created`: la date de creation est ajoutée
+Liste toutes les issues des projets où l’utilisateur est contributeur.
 
-**GET** `/issues/{id}/`
-Voir les détails d'une issue.
+---
 
-**PATCH / DELETE** `/issues/{id}/`
-modifier ou supprimer une issue.
+Créer une issue
+^^^^^^^^^^^^^^^
 
-Contraintes:
-seul l'auteur peut modifier ou supprimer une issue
+.. code-block:: http
 
-----
+   POST /issues/
+
+Crée une nouvelle issue liée à un projet.
+
+**Corps de la requête :**
+
+.. code-block:: json
+
+   {
+     "title": "Bug sur le formulaire",
+     "description": "Le bouton submit plante",
+     "priority": "High",
+     "status": "To Do",
+     "nature": "Bug",
+     "assigned": 3,
+     "project": 1
+   }
+
+**Contraintes :**
+* `title` doit être unique dans un projet
+* `assigned` doit être contributeur du projet
+* `author` est automatiquement défini
+* `project` doit être accessible
+* `date_created` est ajouté automatiquement
+
+---
+
+Voir une issue
+^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   GET /issues/{id}/
+
+Renvoie les détails d'une issue.
+
+---
+
+Modifier ou supprimer une issue
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   PATCH /issues/{id}/
+   DELETE /issues/{id}/
+
+Permet de modifier ou supprimer une issue.
+
+**Contraintes :**
+* Seul l’auteur de l’issue peut la modifier ou la supprimer
+
+---
 
 Commentaires
 ------------
 
-**GET** `/comments/`
-Lister tous les commentaires des issues, des projets dont l'utilisateur est contributeur.
+Lister les commentaires
+^^^^^^^^^^^^^^^^^^^^^^^
 
-**POST** `/comments/`
-Créer un commentaire.
+.. code-block:: http
 
-Requête :
-- `description`: string
-- `issue`: integer (id de l’issue)
+   GET /comments/
 
-Contraintes:
-- `issue`: l'auteur doit être contributeur du project lié à l'issue
-- `author`: l'utilisateur connecté est ajouté automatiquement
-- `date_created`: la date de creation est ajoutée automatiquement
+Liste les commentaires liés aux issues des projets du user.
 
-**GET** `/comments/{id}/`
-Voir, modifier ou supprimer un commentaire.
+---
 
-**PATCH / DELETE** `/comments/{id}/`
-modifier ou supprimer un commentaire.
+Créer un commentaire
+^^^^^^^^^^^^^^^^^^^^
 
-Contraintes:
-seul l'auteur peut modifier ou supprimer un commentaire
+.. code-block:: http
 
-----
+   POST /comments/
 
+Ajoute un commentaire à une issue.
+
+**Corps de la requête :**
+
+.. code-block:: json
+
+   {
+     "description": "Je m’en occupe",
+     "issue": 5
+   }
+
+**Contraintes :**
+* L’auteur est automatiquement défini
+* Le projet lié à l’issue doit être accessible
+* La date de création est ajoutée automatiquement
+
+---
+
+Voir un commentaire
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   GET /comments/{id}/
+
+Affiche un commentaire.
+
+---
+
+Modifier ou supprimer un commentaire
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   PATCH /comments/{id}/
+   DELETE /comments/{id}/
+
+**Contraintes :**
+* Seul l’auteur du commentaire peut le modifier ou le supprimer
