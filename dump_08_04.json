@@ -973,7 +973,7 @@
       "priority": "High",
       "nature": "Bug",
       "author": 6,
-      "assigned": 1,
+      "assigned": 6,
       "project": 4
   }
 },
@@ -1042,7 +1042,7 @@
   "pk": "28bfea5e-04f5-4b3f-8a3a-15ecdb3f3f6b",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
-      "author": 1,
+      "author": 4,
       "description": "UX considerations needed.",
       "issue": 2
   }
