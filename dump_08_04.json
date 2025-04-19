@@ -702,7 +702,7 @@
     }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 1,
   "fields": {
       "project": 1,
@@ -710,7 +710,7 @@
   }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 2,
   "fields": {
       "project": 1,
@@ -718,7 +718,7 @@
   }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 3,
   "fields": {
       "project": 1,
@@ -726,7 +726,7 @@
   }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 4,
   "fields": {
       "project": 2,
@@ -734,7 +734,7 @@
   }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 5,
   "fields": {
       "project": 2,
@@ -742,7 +742,7 @@
   }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 6,
   "fields": {
       "project": 3,
@@ -750,7 +750,7 @@
   }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 7,
   "fields": {
       "project": 3,
@@ -758,7 +758,7 @@
   }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 8,
   "fields": {
       "project": 4,
@@ -766,7 +766,7 @@
   }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 9,
   "fields": {
       "project": 4,
@@ -774,7 +774,7 @@
   }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 10,
   "fields": {
       "project": 5,
@@ -782,7 +782,7 @@
   }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 11,
   "fields": {
       "project": 5,
@@ -790,7 +790,7 @@
   }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 12,
   "fields": {
       "project": 6,
@@ -798,7 +798,7 @@
   }
 },
 {
-  "model": "project.contributor",
+  "model": "projectManagement.contributor",
   "pk": 13,
   "fields": {
       "project": 6,
@@ -806,7 +806,7 @@
   }
 },
 {
-  "model": "project.project",
+  "model": "projectManagement.project",
   "pk": 1,
   "fields": {
     "date_created": "2025-04-07T09:47:57.890Z",
@@ -817,7 +817,7 @@
   }
 },
 {
-  "model": "project.project",
+  "model": "projectManagement.project",
   "pk": 2,
   "fields": {
     "date_created": "2025-04-07T09:47:57.890Z",
@@ -828,7 +828,7 @@
   }
 },
 {
-  "model": "project.project",
+  "model": "projectManagement.project",
   "pk": 3,
   "fields": {
     "date_created": "2025-04-07T09:47:57.890Z",
@@ -839,7 +839,7 @@
   }
 },
 {
-  "model": "project.project",
+  "model": "projectManagement.project",
   "pk": 4,
   "fields": {
     "date_created": "2025-04-07T09:47:57.890Z",
@@ -850,7 +850,7 @@
   }
 },
 {
-  "model": "project.project",
+  "model": "projectManagement.project",
   "pk": 5,
   "fields": {
     "date_created": "2025-04-07T09:47:57.890Z",
@@ -861,7 +861,7 @@
   }
 },
 {
-  "model": "project.project",
+  "model": "projectManagement.project",
   "pk": 6,
   "fields": {
     "date_created": "2025-04-07T09:47:57.890Z",
@@ -873,7 +873,7 @@
 },
 
 {
-  "model": "project.issue",
+  "model": "projectManagement.issue",
   "pk": 1,
   "fields": {
       "title": "Fix checkout bug",
@@ -888,7 +888,7 @@
   }
 },
 {
-  "model": "project.issue",
+  "model": "projectManagement.issue",
   "pk": 2,
   "fields": {
       "title": "Implement discount system",
@@ -903,7 +903,7 @@
   }
 },
 {
-  "model": "project.issue",
+  "model": "projectManagement.issue",
   "pk": 3,
   "fields": {
       "title": "Improve search functionality",
@@ -918,7 +918,7 @@
   }
 },
 {
-  "model": "project.issue",
+  "model": "projectManagement.issue",
   "pk": 4,
   "fields": {
       "title": "Fix UI bug on mobile",
@@ -933,7 +933,7 @@
   }
 },
 {
-  "model": "project.issue",
+  "model": "projectManagement.issue",
   "pk": 5,
   "fields": {
       "title": "Fix message sending delay",
@@ -948,7 +948,7 @@
   }
 },
 {
-  "model": "project.issue",
+  "model": "projectManagement.issue",
   "pk": 6,
   "fields": {
       "title": "Add heart rate monitor",
@@ -963,7 +963,7 @@
   }
 },
 {
-  "model": "project.issue",
+  "model": "projectManagement.issue",
   "pk": 7,
   "fields": {
       "title": "Fix thermostat connectivity",
@@ -978,7 +978,7 @@
   }
 },
 {
-  "model": "project.issue",
+  "model": "projectManagement.issue",
   "pk": 8,
   "fields": {
       "title": "Improve NLP accuracy",
@@ -993,7 +993,7 @@
   }
 },
 {
-  "model": "project.issue",
+  "model": "projectManagement.issue",
   "pk": 9,
   "fields": {
       "title": "Fix playlist shuffle",
@@ -1008,7 +1008,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "e28a600d-830e-450e-afcc-8f127ba1412f",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1018,7 +1018,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "7a2f5b52-82f9-4e65-bb51-b83c6239d8d2",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1028,7 +1028,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "8cfa3a41-38be-45e2-87d3-65b432412a2a",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1038,7 +1038,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "28bfea5e-04f5-4b3f-8a3a-15ecdb3f3f6b",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1048,7 +1048,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "fe38bdb6-8f02-4538-bb15-0d26f66395a9",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1058,7 +1058,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "e4a88535-6828-4304-9067-8f9a6ef901a6",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1068,7 +1068,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "22bb443f-305e-4e08-9810-96d0fa48fc9a",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1078,7 +1078,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "ab2fc6c4-6de6-4a92-a460-ff8a7257a6c2",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1088,7 +1088,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "c9ccacfc-9c32-4532-9e3d-04627072d3f3",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1098,7 +1098,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "4b51e0f2-50be-4c90-b81d-48b2bba250f7",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1108,7 +1108,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "382c528e-882b-4de2-b8ff-2647dc50f86c",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1118,7 +1118,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "982f27a9-4155-4d3e-9e9f-b2fd020c9eaf",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1128,7 +1128,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "b1c03445-2682-4d8e-b2fd-e3049a093a0b",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1138,7 +1138,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "db0d032f-3285-4fa6-acee-f6630bd46a1d",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
@@ -1148,7 +1148,7 @@
   }
 },
 {
-  "model": "project.comment",
+  "model": "projectManagement.comment",
   "pk": "a587e51e-c4c3-41e4-99b9-15d58e3bb218",
   "fields": {
       "date_created": "2025-04-08T13:05:19.450Z",
