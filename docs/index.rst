@@ -430,6 +430,8 @@ Voir un commentaire
 
 Affiche un commentaire.
 
+**Note :** ``id`` est un identifiant au format *UUID*.
+
 ---
 
 Modifier ou supprimer un commentaire
@@ -439,6 +441,8 @@ Modifier ou supprimer un commentaire
 
    PATCH /api/v1/comments/{id}/
    DELETE /api/v1/comments/{id}/
+
+**Note :** ``id`` est un identifiant au format *UUID*.
 
 **Contraintes :**
 
