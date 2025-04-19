@@ -150,8 +150,8 @@ Authorization: Bearer <your_token>
 ---
 
 
-### 📖 Use postman documentation
+### 📖 Use ReadtheDocs documentation
 
-the full documentation is available on the [Postman website](https://documenter.getpostman.com/view/40813058/2sB2ca6f4u)
+the full documentation is available on the [ReadtheDocs website](https://softdesk-support-api.readthedocs.io/en/latest/)
 
 
