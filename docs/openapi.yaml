@@ -1,0 +1,1385 @@
+openapi: 3.0.3
+info:
+  title: SoftDesk Support API
+  version: 1.0.0
+  description: API REST pour la gestion de support technique
+paths:
+  /api/schema/:
+    get:
+      operationId: api_schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - fr
+          - en
+
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/comments/:
+    get:
+      operationId: api_v1_comments_list
+      description: |-
+        ViewSet to manage comments associated with project outcomes.
+        Only contributors can view comments.
+        Only author can edit comments.
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCommentList'
+          description: ''
+    post:
+      operationId: api_v1_comments_create
+      description: |-
+        ViewSet to manage comments associated with project outcomes.
+        Only contributors can view comments.
+        Only author can edit comments.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Comment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Comment'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+  /api/v1/comments/{id}/:
+    get:
+      operationId: api_v1_comments_retrieve
+      description: |-
+        ViewSet to manage comments associated with project outcomes.
+        Only contributors can view comments.
+        Only author can edit comments.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+    put:
+      operationId: api_v1_comments_update
+      description: Do not use PUT. Use PATCH for updates.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Comment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Comment'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+    patch:
+      operationId: api_v1_comments_partial_update
+      description: |-
+        ViewSet to manage comments associated with project outcomes.
+        Only contributors can view comments.
+        Only author can edit comments.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedComment'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+    delete:
+      operationId: api_v1_comments_destroy
+      description: |-
+        ViewSet to manage comments associated with project outcomes.
+        Only contributors can view comments.
+        Only author can edit comments.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/issues/:
+    get:
+      operationId: api_v1_issues_list
+      description: |-
+        ViewSet to manage issues associated with project outcomes.
+        Only contributors can view issues.
+        Only author can edit issues.
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedIssueListList'
+          description: ''
+    post:
+      operationId: api_v1_issues_create
+      description: |-
+        ViewSet to manage issues associated with project outcomes.
+        Only contributors can view issues.
+        Only author can edit issues.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IssueDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/IssueDetail'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueDetail'
+          description: ''
+  /api/v1/issues/{id}/:
+    get:
+      operationId: api_v1_issues_retrieve
+      description: |-
+        ViewSet to manage issues associated with project outcomes.
+        Only contributors can view issues.
+        Only author can edit issues.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueDetail'
+          description: ''
+    put:
+      operationId: api_v1_issues_update
+      description: Do not use PUT. Use PATCH for updates.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IssueDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/IssueDetail'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueDetail'
+          description: ''
+    patch:
+      operationId: api_v1_issues_partial_update
+      description: |-
+        ViewSet to manage issues associated with project outcomes.
+        Only contributors can view issues.
+        Only author can edit issues.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedIssueDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedIssueDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedIssueDetail'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueDetail'
+          description: ''
+    delete:
+      operationId: api_v1_issues_destroy
+      description: |-
+        ViewSet to manage issues associated with project outcomes.
+        Only contributors can view issues.
+        Only author can edit issues.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/projects/:
+    get:
+      operationId: api_v1_projects_list
+      description: |-
+        ViewSet to manage projects. Allows:
+        - list the projects whose user is a contributor,
+        - create a project (automatically assigned to the author),
+        - add or remove a contributor (if the user is the author).
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProjectListList'
+          description: ''
+    post:
+      operationId: api_v1_projects_create
+      description: |-
+        ViewSet to manage projects. Allows:
+        - list the projects whose user is a contributor,
+        - create a project (automatically assigned to the author),
+        - add or remove a contributor (if the user is the author).
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectDetail'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDetail'
+          description: ''
+  /api/v1/projects/{id}/:
+    get:
+      operationId: api_v1_projects_retrieve
+      description: |-
+        ViewSet to manage projects. Allows:
+        - list the projects whose user is a contributor,
+        - create a project (automatically assigned to the author),
+        - add or remove a contributor (if the user is the author).
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDetail'
+          description: ''
+    put:
+      operationId: api_v1_projects_update
+      description: Do not use PUT. Use PATCH for updates.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectDetail'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDetail'
+          description: ''
+    patch:
+      operationId: api_v1_projects_partial_update
+      description: |-
+        ViewSet to manage projects. Allows:
+        - list the projects whose user is a contributor,
+        - create a project (automatically assigned to the author),
+        - add or remove a contributor (if the user is the author).
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProjectDetail'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDetail'
+          description: ''
+    delete:
+      operationId: api_v1_projects_destroy
+      description: |-
+        ViewSet to manage projects. Allows:
+        - list the projects whose user is a contributor,
+        - create a project (automatically assigned to the author),
+        - add or remove a contributor (if the user is the author).
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/projects/{id}/add_contributor/:
+    post:
+      operationId: api_v1_projects_add_contributor_create
+      description: Adds a contributor to a project if the user is the author.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectList'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectList'
+          description: ''
+  /api/v1/projects/{id}/del_contributor/:
+    delete:
+      operationId: api_v1_projects_del_contributor_destroy
+      description: Removes a contributor from a project if the user is the author.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/token/:
+    post:
+      operationId: api_v1_token_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+          description: ''
+  /api/v1/token/refresh/:
+    post:
+      operationId: api_v1_token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/v1/users/:
+    get:
+      operationId: api_v1_users_list
+      description: |-
+        View to list users who have authorized the sharing of their data.
+        Requires authentication.
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedUserListList'
+          description: ''
+  /api/v1/users/{id}/:
+    get:
+      operationId: api_v1_users_retrieve
+      description: |-
+        View allowing an authenticated user to view or modify
+        only its own information.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: api_v1_users_update
+      description: |-
+        View allowing an authenticated user to view or modify
+        only its own information.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: api_v1_users_partial_update
+      description: |-
+        View allowing an authenticated user to view or modify
+        only its own information.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/v1/users/{id}/delete/:
+    delete:
+      operationId: api_v1_users_delete_destroy
+      description: View allowing a user to delete their own account.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/users/register/:
+    post:
+      operationId: api_v1_users_register_create
+      description: |-
+        View for creating a new user.
+        Accessible without authentication.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+components:
+  schemas:
+    Comment:
+      type: object
+      description: |-
+        Serializer for comments related to an issue.
+        Provides details of the comment and the author and associated issue.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        description:
+          type: string
+          maxLength: 255
+        date_created:
+          type: string
+          format: date-time
+          readOnly: true
+        author:
+          type: string
+          readOnly: true
+        issue:
+          type: integer
+      required:
+      - author
+      - date_created
+      - description
+      - id
+      - issue
+    Contributor:
+      type: object
+      description: |-
+        Serializer to represent a contributor to a project.
+        Displays user information using the UserListSerializer.
+      properties:
+        user:
+          allOf:
+          - $ref: '#/components/schemas/UserList'
+          readOnly: true
+      required:
+      - user
+    IssueDetail:
+      type: object
+      description: |-
+        Detailed serializer for an issue.
+        Displays all relevant information, including author,
+        the assigned user, comments, and associated project.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 2550
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        priority:
+          $ref: '#/components/schemas/PriorityEnum'
+        nature:
+          $ref: '#/components/schemas/NatureEnum'
+        date_created:
+          type: string
+          format: date-time
+          readOnly: true
+        author:
+          type: string
+          readOnly: true
+        assigned:
+          type: integer
+          nullable: true
+        project:
+          type: integer
+        comments:
+          type: string
+          readOnly: true
+      required:
+      - assigned
+      - author
+      - comments
+      - date_created
+      - description
+      - id
+      - nature
+      - project
+      - title
+    IssueList:
+      type: object
+      description: |-
+        Simplified serializer to display a list of issues.
+        Provides the main information of an issue.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        date_created:
+          type: string
+          format: date-time
+          readOnly: true
+        project:
+          type: integer
+      required:
+      - date_created
+      - id
+      - project
+      - title
+    NatureEnum:
+      enum:
+      - Bug
+      - Feature
+      - Task
+      type: string
+      description: |-
+        * `Bug` - Bug
+        * `Feature` - Feature
+        * `Task` - Task
+    PaginatedCommentList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+    PaginatedIssueListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssueList'
+    PaginatedProjectListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectList'
+    PaginatedUserListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserList'
+    PatchedComment:
+      type: object
+      description: |-
+        Serializer for comments related to an issue.
+        Provides details of the comment and the author and associated issue.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        description:
+          type: string
+          maxLength: 255
+        date_created:
+          type: string
+          format: date-time
+          readOnly: true
+        author:
+          type: string
+          readOnly: true
+        issue:
+          type: integer
+    PatchedIssueDetail:
+      type: object
+      description: |-
+        Detailed serializer for an issue.
+        Displays all relevant information, including author,
+        the assigned user, comments, and associated project.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 2550
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        priority:
+          $ref: '#/components/schemas/PriorityEnum'
+        nature:
+          $ref: '#/components/schemas/NatureEnum'
+        date_created:
+          type: string
+          format: date-time
+          readOnly: true
+        author:
+          type: string
+          readOnly: true
+        assigned:
+          type: integer
+          nullable: true
+        project:
+          type: integer
+        comments:
+          type: string
+          readOnly: true
+    PatchedProjectDetail:
+      type: object
+      description: |-
+        Detailed serializer for a project.
+        Includes information from the author, contributors and associated issues.
+        Also allows adding contributors via a list of IDs.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        author:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          maxLength: 2550
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        date_created:
+          type: string
+          format: date-time
+          readOnly: true
+        contributors_info:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contributor'
+          readOnly: true
+        contributors_ids:
+          type: array
+          items:
+            type: integer
+          writeOnly: true
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssueList'
+          readOnly: true
+    PatchedUser:
+      type: object
+      description: |-
+        Main serializer for the creation and validation of a complete user,
+        including sensitive fields such as password and date of birth.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        password:
+          type: string
+          maxLength: 128
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        birth_date:
+          type: string
+          format: date
+        can_be_contacted:
+          type: boolean
+        can_data_be_shared:
+          type: boolean
+    PriorityEnum:
+      enum:
+      - Low
+      - Medium
+      - High
+      type: string
+      description: |-
+        * `Low` - low
+        * `Medium` - Medium
+        * `High` - High
+    ProjectDetail:
+      type: object
+      description: |-
+        Detailed serializer for a project.
+        Includes information from the author, contributors and associated issues.
+        Also allows adding contributors via a list of IDs.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        author:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          maxLength: 2550
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        date_created:
+          type: string
+          format: date-time
+          readOnly: true
+        contributors_info:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contributor'
+          readOnly: true
+        contributors_ids:
+          type: array
+          items:
+            type: integer
+          writeOnly: true
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssueList'
+          readOnly: true
+      required:
+      - author
+      - contributors_info
+      - date_created
+      - description
+      - id
+      - issues
+      - title
+      - type
+    ProjectList:
+      type: object
+      description: |-
+        Serializer for the list of projects.
+        Provides essential information about a project.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 2550
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        date_created:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - date_created
+      - description
+      - id
+      - title
+      - type
+    StatusEnum:
+      enum:
+      - To Do
+      - In Progress
+      - Finished
+      type: string
+      description: |-
+        * `To Do` - To Do
+        * `In Progress` - In Progress
+        * `Finished` - Finished
+    TokenObtainPair:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          readOnly: true
+      required:
+      - access
+      - password
+      - refresh
+      - username
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          writeOnly: true
+      required:
+      - access
+      - refresh
+    TypeEnum:
+      enum:
+      - back-end
+      - front-end
+      - iOS
+      - Android
+      type: string
+      description: |-
+        * `back-end` - back-end
+        * `front-end` - front-end
+        * `iOS` - iOS
+        * `Android` - Android
+    User:
+      type: object
+      description: |-
+        Main serializer for the creation and validation of a complete user,
+        including sensitive fields such as password and date of birth.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        password:
+          type: string
+          maxLength: 128
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        birth_date:
+          type: string
+          format: date
+        can_be_contacted:
+          type: boolean
+        can_data_be_shared:
+          type: boolean
+      required:
+      - birth_date
+      - id
+      - password
+      - username
+    UserList:
+      type: object
+      description: |-
+        Serializer used to display a public or restricted view of the user.
+        Does not contain sensitive data (e.g. password or email).
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        can_be_contacted:
+          type: boolean
+        can_data_be_shared:
+          type: boolean
+      required:
+      - id
+      - username
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
