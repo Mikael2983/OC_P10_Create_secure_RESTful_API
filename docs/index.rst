@@ -1,8 +1,3 @@
-.. SoftDesk Support API documentation master file, created by
-   sphinx-quickstart on Fri Apr 18 13:59:27 2025.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 SoftDesk Support API Documentation
 ==================================
 
@@ -27,22 +22,31 @@ Inscription d’un nouvel utilisateur
 
 .. code-block:: http
 
-   POST /users/register/
+   POST /api/v1/users/register/
 
 Inscrit un nouvel utilisateur.
 
-**Corps de la requête :**
+**Champs requis :**
+
+* ``username`` : *string* — identifiant unique
+* ``password`` : *string* — mot de passe sécurisé
+* ``email`` : *string* — adresse email valide
+* ``birth_date`` : *string (date)* — format YYYY-MM-DD
+* ``can_be_contacted`` : *boolean*
+* ``can_data_be_shared`` : *boolean*
+
+**Exemple de requête :**
 
 .. code-block:: json
 
-   {
-     "username": "john_doe",
-     "password": "MotDePasse123!",
-     "email": "john@example.com",
-     "birth_date": "2000-01-01",
-     "can_be_contacted": true,
-     "can_data_be_shared": false
-   }
+    {
+        "username": "john_doe",
+        "password": "MotDePasse123!",
+        "email": "john@example.com",
+        "birth_date": "2000-01-01",
+        "can_be_contacted": true,
+        "can_data_be_shared": false
+    }
 
 **Contraintes :**
 
@@ -57,22 +61,23 @@ Obtenir un token JWT
 
 .. code-block:: http
 
-   POST /token/
+   POST /api/v1/token/
 
 Permet à un utilisateur de récupérer un token d’accès JWT.
 
-**Corps de la requête :**
+**Champs requis :**
+
+* ``username`` : *string*
+* ``password`` : *string*
+
+**Exemple :**
 
 .. code-block:: json
 
-   {
-     "username": "john_doe",
-     "password": "MotDePasse123!"
-   }
-
-**Contraintes :**
-
-* Les identifiants doivent être valides
+    {
+        "username": "john_doe",
+        "password": "MotDePasse123!"
+    }
 
 ---
 
@@ -81,21 +86,21 @@ Rafraîchir un token JWT
 
 .. code-block:: http
 
-   POST /token/refresh/
+   POST /api/v1/token/refresh/
 
-Permet de renouveler un token d'accès JWT.
+Permet de renouveler un token JWT.
 
-**Corps de la requête :**
+**Champs requis :**
+
+* ``refresh`` : *string* — token de rafraîchissement
+
+**Exemple :**
 
 .. code-block:: json
 
-   {
-     "refresh": "eyJ0eXAiOiJKV1QiLCJhbGci..."
-   }
-
-**Contraintes :**
-
-* Le token doit être encore valide
+    {
+        "refresh": "eyJ0eXAiOiJKV1QiLCJhbGci..."
+    }
 
 ---
 
@@ -107,7 +112,7 @@ Lister les utilisateurs
 
 .. code-block:: http
 
-   GET /users/
+   GET /api/v1/users/
 
 Renvoie une liste des utilisateurs publics (username uniquement).
 
@@ -118,7 +123,7 @@ Voir son propre profil
 
 .. code-block:: http
 
-   GET /users/{id}/
+   GET /api/v1/users/{id}/
 
 Renvoie les informations du profil connecté.
 
@@ -136,7 +141,7 @@ Lister les projets
 
 .. code-block:: http
 
-   GET /projects/
+   GET /api/v1/projects/
 
 Liste les projets visibles par l’utilisateur connecté (s’il est contributeur).
 
@@ -147,20 +152,27 @@ Créer un projet
 
 .. code-block:: http
 
-   POST /projects/
+   POST /api/v1/projects/
 
 Crée un nouveau projet.
 
-**Corps de la requête :**
+**Champs requis :**
+
+* ``title`` : *string*
+* ``description`` : *string*
+* ``type`` : *string* — ``back-end``, ``front-end``, ``iOS``, ``Android``
+* ``contributors_ids`` : *array of integers* — identifiants des utilisateurs
+
+**Exemple :**
 
 .. code-block:: json
 
-   {
-     "title": "Nom du projet",
-     "description": "Description du projet",
-     "type": "back-end",
-     "contributors_ids": [2, 3]
-   }
+    {
+        "title": "Nom du projet",
+        "description": "Un super projet",
+        "type": "front-end",
+        "contributors_ids": [2, 3]
+    }
 
 **Contraintes :**
 
@@ -174,7 +186,7 @@ Voir un projet
 
 .. code-block:: http
 
-   GET /projects/{id}/
+   GET /api/v1/projects/{id}/
 
 Renvoie les détails du projet.
 
@@ -185,19 +197,25 @@ Modifier un projet
 
 .. code-block:: http
 
-   PATCH /projects/{id}/
+   PATCH /api/v1/projects/{id}/
 
 Permet de modifier un projet existant.
 
-**Corps de la requête (exemple partiel) :**
+**Champs modifiables :**
+
+* ``title`` : *string*
+* ``description`` : *string*
+* ``type`` : *string*
+
+**Exemple :**
 
 .. code-block:: json
 
-   {
-     "title": "Nouveau titre",
-     "description": "Nouvelle description",
-     "type": "iOS"
-   }
+    {
+        "title": "Nouveau titre",
+        "description": "Nouvelle description",
+        "type": "iOS"
+    }
 
 **Contraintes :**
 
@@ -211,9 +229,9 @@ Supprimer un projet
 
 .. code-block:: http
 
-   DELETE /projects/{id}/
+   DELETE /api/v1/projects/{id}/
 
-Supprime le projet.
+Supprime un projet existant.
 
 **Contraintes :**
 
@@ -226,17 +244,21 @@ Ajouter un contributeur
 
 .. code-block:: http
 
-   POST /projects/{id}/add_contributor/
+   POST /api/v1/projects/{id}/add_contributor/
 
 Ajoute un contributeur à un projet.
 
-**Corps de la requête :**
+**Champs requis :**
+
+* ``user_id`` : *integer*
+
+**Exemple :**
 
 .. code-block:: json
 
-   {
-     "user_id": 4
-   }
+    {
+        "user_id": 4
+    }
 
 **Contraintes :**
 
@@ -249,17 +271,21 @@ Supprimer un contributeur
 
 .. code-block:: http
 
-   DELETE /projects/{id}/del_contributor/
+   DELETE /api/v1/projects/{id}/del_contributor/
 
 Retire un contributeur du projet.
 
-**Corps de la requête :**
+**Champs requis :**
+
+* ``user_id`` : *integer*
+
+**Exemple :**
 
 .. code-block:: json
 
-   {
-     "user_id": 4
-   }
+    {
+        "user_id": 4
+    }
 
 **Contraintes :**
 
@@ -276,7 +302,7 @@ Lister les issues
 
 .. code-block:: http
 
-   GET /issues/
+   GET /api/v1/issues/
 
 Liste toutes les issues des projets où l’utilisateur est contributeur.
 
@@ -287,31 +313,41 @@ Créer une issue
 
 .. code-block:: http
 
-   POST /issues/
+   POST /api/v1/issues/
 
-Crée une nouvelle issue liée à un projet.
+Crée une nouvelle tâche.
 
-**Corps de la requête :**
+**Champs requis :**
+
+* ``title`` : *string*
+* ``description`` : *string*
+* ``priority`` : *string* — ``Low``, ``Medium``, ``High``
+* ``status`` : *string* — ``To Do``, ``In Progress``, ``Finished``
+* ``nature`` : *string* — ``Bug``, ``Feature``, ``Task``
+* ``assigned`` : *integer*
+* ``project`` : *integer*
+
+**Exemple :**
 
 .. code-block:: json
 
-   {
-     "title": "Bug sur le formulaire",
-     "description": "Le bouton submit plante",
-     "priority": "High",
-     "status": "To Do",
-     "nature": "Bug",
-     "assigned": 3,
-     "project": 1
-   }
+    {
+        "title": "Erreur formulaire",
+        "description": "Le bouton plante",
+        "priority": "High",
+        "status": "To Do",
+        "nature": "Bug",
+        "assigned": 3,
+        "project": 1
+    }
 
 **Contraintes :**
 
-* `title` doit être unique dans un projet
+* `title` unique par projet
 * `assigned` doit être contributeur du projet
-* `author` est automatiquement défini
-* `project` doit être accessible
-* `date_created` est ajouté automatiquement
+* `author` est ajouté automatiquement
+* `project` doit être valide
+* `date_created` est générée automatiquement
 
 ---
 
@@ -320,9 +356,9 @@ Voir une issue
 
 .. code-block:: http
 
-   GET /issues/{id}/
+   GET /api/v1/issues/{id}/
 
-Renvoie les détails d'une issue.
+Affiche les détails d'une issue.
 
 ---
 
@@ -331,10 +367,8 @@ Modifier ou supprimer une issue
 
 .. code-block:: http
 
-   PATCH /issues/{id}/
-   DELETE /issues/{id}/
-
-Permet de modifier ou supprimer une issue.
+   PATCH /api/v1/issues/{id}/
+   DELETE /api/v1/issues/{id}/
 
 **Contraintes :**
 
@@ -350,9 +384,9 @@ Lister les commentaires
 
 .. code-block:: http
 
-   GET /comments/
+   GET /api/v1/comments/
 
-Liste les commentaires liés aux issues des projets du user.
+Liste tous les commentaires accessibles.
 
 ---
 
@@ -361,23 +395,28 @@ Créer un commentaire
 
 .. code-block:: http
 
-   POST /comments/
+   POST /api/v1/comments/
 
-Ajoute un commentaire à une issue.
+Crée un commentaire.
 
-**Corps de la requête :**
+**Champs requis :**
+
+* ``description`` : *string*
+* ``issue`` : *integer*
+
+**Exemple :**
 
 .. code-block:: json
 
-   {
-     "description": "Je m’en occupe",
-     "issue": 5
-   }
+    {
+        "description": "Je m'en occupe",
+        "issue": 2
+    }
 
 **Contraintes :**
 
-* L’auteur est automatiquement défini
-* Le projet lié à l’issue doit être accessible
+* L’auteur est défini automatiquement
+* L’utilisateur doit être contributeur du projet lié à l’issue
 * La date de création est ajoutée automatiquement
 
 ---
@@ -387,7 +426,7 @@ Voir un commentaire
 
 .. code-block:: http
 
-   GET /comments/{id}/
+   GET /api/v1/comments/{id}/
 
 Affiche un commentaire.
 
@@ -398,8 +437,8 @@ Modifier ou supprimer un commentaire
 
 .. code-block:: http
 
-   PATCH /comments/{id}/
-   DELETE /comments/{id}/
+   PATCH /api/v1/comments/{id}/
+   DELETE /api/v1/comments/{id}/
 
 **Contraintes :**
 
