@@ -2,4 +2,4 @@ Django~=5.1.8
 djangorestframework~=3.15.2
 djangorestframework-simplejwt~=5.5.0
 requests~=2.32.3
-groundwork-sphinx-theme
+sphinx_rtd_theme

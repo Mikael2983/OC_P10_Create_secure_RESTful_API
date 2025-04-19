@@ -45,6 +45,7 @@ Inscrit un nouvel utilisateur.
    }
 
 **Contraintes :**
+
 * L'utilisateur doit avoir au moins 15 ans
 * L'email doit être unique
 * Le mot de passe est hashé automatiquement
@@ -70,6 +71,7 @@ Permet à un utilisateur de récupérer un token d’accès JWT.
    }
 
 **Contraintes :**
+
 * Les identifiants doivent être valides
 
 ---
@@ -92,6 +94,7 @@ Permet de renouveler un token d'accès JWT.
    }
 
 **Contraintes :**
+
 * Le token doit être encore valide
 
 ---
@@ -120,6 +123,7 @@ Voir son propre profil
 Renvoie les informations du profil connecté.
 
 **Contraintes :**
+
 * Le profil des autres utilisateurs n’est pas accessible
 
 ---
@@ -159,6 +163,7 @@ Crée un nouveau projet.
    }
 
 **Contraintes :**
+
 * L’auteur est automatiquement ajouté comme contributeur
 * `contributors_ids` ne fonctionne que lors de la création
 
@@ -195,6 +200,7 @@ Permet de modifier un projet existant.
    }
 
 **Contraintes :**
+
 * Seul l’auteur du projet peut le modifier
 * `contributors_ids` non pris en charge ici
 
@@ -210,6 +216,7 @@ Supprimer un projet
 Supprime le projet.
 
 **Contraintes :**
+
 * Seul l’auteur peut supprimer un projet
 
 ---
@@ -232,6 +239,7 @@ Ajoute un contributeur à un projet.
    }
 
 **Contraintes :**
+
 * Seul l’auteur du projet peut ajouter un contributeur
 
 ---
@@ -254,6 +262,7 @@ Retire un contributeur du projet.
    }
 
 **Contraintes :**
+
 * Seul l’auteur peut retirer un contributeur
 * L’auteur ne peut pas se retirer lui-même
 
@@ -297,6 +306,7 @@ Crée une nouvelle issue liée à un projet.
    }
 
 **Contraintes :**
+
 * `title` doit être unique dans un projet
 * `assigned` doit être contributeur du projet
 * `author` est automatiquement défini
@@ -327,6 +337,7 @@ Modifier ou supprimer une issue
 Permet de modifier ou supprimer une issue.
 
 **Contraintes :**
+
 * Seul l’auteur de l’issue peut la modifier ou la supprimer
 
 ---
@@ -364,6 +375,7 @@ Ajoute un commentaire à une issue.
    }
 
 **Contraintes :**
+
 * L’auteur est automatiquement défini
 * Le projet lié à l’issue doit être accessible
 * La date de création est ajoutée automatiquement
@@ -390,4 +402,5 @@ Modifier ou supprimer un commentaire
    DELETE /comments/{id}/
 
 **Contraintes :**
+
 * Seul l’auteur du commentaire peut le modifier ou le supprimer
