@@ -30,10 +30,13 @@ Inscrit un nouvel utilisateur.
 
 * ``username`` : *string* — identifiant unique
 * ``password`` : *string* — mot de passe sécurisé
-* ``email`` : *string* — adresse email valide
 * ``birth_date`` : *string (date)* — format YYYY-MM-DD
-* ``can_be_contacted`` : *boolean*
-* ``can_data_be_shared`` : *boolean*
+
+**Champs optionnels :**
+
+* ``can_be_contacted`` : *boolean*, par défaut => True
+* ``can_data_be_shared`` : *boolean*, par défaut => True
+* ``email`` : *string* — adresse email valide,  par défaut => Null
 
 **Exemple de requête :**
 
@@ -50,8 +53,12 @@ Inscrit un nouvel utilisateur.
 
 **Contraintes :**
 
+* Le nom de l'utilisateur doit être unique
 * L'utilisateur doit avoir au moins 15 ans
 * L'email doit être unique
+
+**Notes :**
+
 * Le mot de passe est hashé automatiquement
 
 ---
@@ -79,6 +86,14 @@ Permet à un utilisateur de récupérer un token d’accès JWT.
         "password": "MotDePasse123!"
     }
 
+**Réponse :**
+
+.. code-block:: json
+
+    {
+        "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eX...",
+        "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eX..."
+    }
 ---
 
 Rafraîchir un token JWT
@@ -102,6 +117,13 @@ Permet de renouveler un token JWT.
         "refresh": "eyJ0eXAiOiJKV1QiLCJhbGci..."
     }
 
+**Réponse :**
+
+.. code-block:: json
+
+    {
+        "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eX..."
+    }
 ---
 
 Utilisateurs
@@ -114,7 +136,7 @@ Lister les utilisateurs
 
    GET /api/v1/users/
 
-Renvoie une liste des utilisateurs publics (username uniquement).
+Renvoie une liste des utilisateurs publics (champs id et username uniquement).
 
 ---
 
