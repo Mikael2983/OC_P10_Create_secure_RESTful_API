@@ -71,7 +71,8 @@ class IssueDetailSerializer(serializers.ModelSerializer):
     assigned = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all(), allow_null=True
     )
-    project = serializers.PrimaryKeyRelatedField(queryset=Project.objects.all())
+    project = serializers.PrimaryKeyRelatedField(
+        queryset=Project.objects.all(), allow_null=False)
 
     comments = serializers.SerializerMethodField(read_only=True)
 
