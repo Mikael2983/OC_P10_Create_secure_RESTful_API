@@ -55,4 +55,4 @@ class UserListSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = User
-        fields = ['id', 'username', 'can_be_contacted', 'can_data_be_shared']
+        fields = ('id', 'username')
