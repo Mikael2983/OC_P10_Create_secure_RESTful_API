@@ -12,10 +12,16 @@ class Contributor(models.Model):
     """
 
     project = models.ForeignKey(
-        "Project", on_delete=models.CASCADE, related_name="contributors"
+        "Project",
+        on_delete=models.CASCADE,
+        related_name="contributors",
+        blank=False, null=False
     )
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="contributed_projects"
+        User,
+        on_delete=models.CASCADE,
+        related_name="contributed_projects",
+        blank=False, null=False
     )
 
     class Meta:
@@ -36,9 +42,14 @@ class Project(models.Model):
         ("Android", "Android"),
     ]
     date_created = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=255, unique=True)
-    description = models.CharField(max_length=2550)
-    type = models.CharField(max_length=25, choices=TYPE_CHOICES)
+    title = models.CharField(max_length=255,
+                             unique=True,
+                             blank=False,
+                             null=False)
+    description = models.CharField(max_length=2550, blank=False, null=False)
+    type = models.CharField(max_length=25,
+                            choices=TYPE_CHOICES,
+                            blank=False, null=False)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="authored_projects"
     )
@@ -74,7 +85,7 @@ class Issue(models.Model):
     PRIORITY_CHOICES = [("Low", "low"), ("Medium", "Medium"), ("High", "High")]
     NATURE_CHOICES = [("Bug", "Bug"), ("Feature", "Feature"), ("Task", "Task")]
 
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=False, null=False)
     date_created = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="issues_created"
@@ -85,13 +96,22 @@ class Issue(models.Model):
     )
 
     project = models.ForeignKey(
-        Project, on_delete=models.CASCADE, related_name="issues"
+        Project,
+        on_delete=models.CASCADE,
+        related_name="issues",
+        blank=False, null=False
     )
 
-    description = models.CharField(max_length=2550)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="To Do")
+    description = models.CharField(max_length=2550, blank=False, null=False)
+    status = models.CharField(max_length=20,
+                              choices=STATUS_CHOICES,
+                              default="To Do",
+                              blank=False, null=False)
     priority = models.CharField(
-        max_length=20, choices=PRIORITY_CHOICES, default="Medium"
+        max_length=20,
+        choices=PRIORITY_CHOICES,
+        default="Medium",
+        blank=False, null=False
     )
     nature = models.CharField(max_length=20, choices=NATURE_CHOICES)
 
@@ -114,7 +134,10 @@ class Comment(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="authored_comments"
     )
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, blank=False, null=False)
     issue = models.ForeignKey(
-        Issue, on_delete=models.CASCADE, related_name="issue_comments"
+        Issue,
+        on_delete=models.CASCADE,
+        related_name="issue_comments",
+        blank=False, null=False
     )
