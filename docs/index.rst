@@ -346,8 +346,8 @@ Crée une nouvelle tâche.
 * ``priority`` : *string* — ``Low``, ``Medium``, ``High``
 * ``status`` : *string* — ``To Do``, ``In Progress``, ``Finished``
 * ``nature`` : *string* — ``Bug``, ``Feature``, ``Task``
-* ``assigned`` : *integer*
-* ``project`` : *integer*
+* ``assigned`` : *integer* — id of one contributor user
+* ``project`` : *integer* — id of the project
 
 **Exemple :**
 
@@ -366,10 +366,13 @@ Crée une nouvelle tâche.
 **Contraintes :**
 
 * `title` unique par projet
-* `assigned` doit être contributeur du projet
-* `author` est ajouté automatiquement
+* `assigned` et `author` doivent être des contributeurs du projet
 * `project` doit être valide
+
+**Notes :**
+
 * `date_created` est générée automatiquement
+* `author` est ajouté automatiquement
 
 ---
 
